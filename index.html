@@ -3,171 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>🎮 Missão Conhecimento — Guilherme 5º Ano</title>
+<title>⛏️ Missão Conhecimento — Guilherme 5º Ano</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap');
 :root{
-  --dirt:#8B5E3C;--grass:#5D8A3C;--stone:#8A8A8A;--wood:#A0522D;
-  --sky:#87CEEB;--night:#1a1a2e;--gold:#FFD700;--diamond:#00BFFF;
-  --red:#e74c3c;--green:#2ecc71;--border:#2c2c2c;
-  --card:#f5f0e8;--accent:#5D8A3C;
+  --dirt:#8B5E3C;--grass:#5D8A3C;--stone:#7a7a7a;--night:#1a1a2e;
+  --gold:#FFD700;--diamond:#00BFFF;--red:#e74c3c;--green:#2ecc71;
+  --card:#f5f0e8;--border:#2c2c2c;--p:#7c3aed;--ok:#10b981;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Nunito',sans-serif;background:var(--night);
-  background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(255,255,255,.03) 31px,rgba(255,255,255,.03) 32px),
-  repeating-linear-gradient(90deg,transparent,transparent 31px,rgba(255,255,255,.03) 31px,rgba(255,255,255,.03) 32px);
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(255,255,255,.02) 31px,rgba(255,255,255,.02) 32px),
+  repeating-linear-gradient(90deg,transparent,transparent 31px,rgba(255,255,255,.02) 31px,rgba(255,255,255,.02) 32px);
   min-height:100vh;color:#fff}
-
-/* HEADER */
 .header{background:linear-gradient(135deg,#2d5a1b,#1a3a0d);border-bottom:4px solid var(--gold);
-  padding:16px 20px;text-align:center;position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 20px rgba(0,0,0,.5)}
-.game-title{font-family:'Press Start 2P',monospace;font-size:clamp(10px,2.5vw,16px);
-  color:var(--gold);text-shadow:2px 2px 0 #000;letter-spacing:1px;margin-bottom:8px}
-.game-sub{font-size:13px;color:#90EE90;font-weight:700}
-.hud{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;flex-wrap:wrap}
-.xp-bar-wrap{background:#1a1a1a;border:2px solid var(--gold);border-radius:4px;
-  width:200px;height:18px;overflow:hidden}
-.xp-bar{background:linear-gradient(90deg,var(--green),#27ae60);height:100%;
-  transition:width .5s;border-radius:2px}
-.xp-label{font-size:12px;color:var(--gold);font-weight:800}
-.score-badge{background:#1a1a1a;border:2px solid var(--diamond);border-radius:6px;
-  padding:4px 12px;font-size:12px;color:var(--diamond);font-weight:800}
-
-/* TABS */
-.tabs-wrap{padding:12px 16px 0;background:#16213e;
-  border-bottom:3px solid var(--gold);overflow-x:auto;white-space:nowrap;
-  scrollbar-width:thin;scrollbar-color:var(--gold) #1a1a2e}
-.tabs{display:inline-flex;gap:6px;padding-bottom:0}
-.tab{padding:9px 14px;border-radius:8px 8px 0 0;font-size:11px;font-weight:800;
+  padding:14px 16px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.gtitle{font-family:'Press Start 2P',monospace;font-size:clamp(9px,2.2vw,15px);
+  color:var(--gold);text-shadow:2px 2px 0 #000;margin-bottom:6px}
+.gsub{font-size:12px;color:#90EE90;font-weight:700}
+.hud{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:8px;flex-wrap:wrap}
+.xpw{background:#1a1a1a;border:2px solid var(--gold);border-radius:4px;width:180px;height:16px;overflow:hidden}
+.xpb{background:linear-gradient(90deg,var(--green),#27ae60);height:100%;transition:width .5s}
+.xlb{font-size:11px;color:var(--gold);font-weight:800}
+.sbdg{background:#1a1a1a;border:2px solid var(--diamond);border-radius:6px;
+  padding:3px 10px;font-size:11px;color:var(--diamond);font-weight:800}
+.tabs-wrap{padding:10px 12px 0;background:#16213e;border-bottom:3px solid var(--gold);
+  overflow-x:auto;white-space:nowrap;scrollbar-width:thin;scrollbar-color:var(--gold) #1a1a2e}
+.tabs{display:inline-flex;gap:5px;padding-bottom:0}
+.tab{padding:8px 12px;border-radius:8px 8px 0 0;font-size:10px;font-weight:800;
   cursor:pointer;border:2px solid transparent;border-bottom:none;transition:.2s;
   white-space:nowrap;background:#0f3460;color:#a0c4ff;font-family:'Nunito',sans-serif}
 .tab:hover{background:#1a4a80;color:#fff}
-.tab.active{background:var(--grass);color:#fff;border-color:var(--gold);
-  box-shadow:0 -2px 10px rgba(93,138,60,.5)}
-
-/* MAIN */
-.main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+.tab.active{background:var(--grass);color:#fff;border-color:var(--gold)}
+.main{max-width:860px;margin:0 auto;padding:18px 14px 60px}
 .panel{display:none}.panel.active{display:block}
-
-/* DISCIPLINE CARD */
-.disc-header{background:linear-gradient(135deg,#2d5a1b,#1e3d10);
-  border:3px solid var(--gold);border-radius:16px;padding:20px;
-  margin-bottom:20px;display:flex;align-items:center;gap:14px}
-.disc-icon{font-size:40px}
-.disc-title{font-family:'Press Start 2P',monospace;font-size:clamp(9px,2vw,13px);
+.dhead{background:linear-gradient(135deg,#2d5a1b,#1e3d10);border:3px solid var(--gold);
+  border-radius:14px;padding:18px;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.dicon{font-size:36px}
+.dtitle{font-family:'Press Start 2P',monospace;font-size:clamp(8px,1.8vw,12px);
   color:var(--gold);line-height:1.6}
-.disc-sub{font-size:12px;color:#90EE90;margin-top:4px;font-weight:700}
-
-/* MODE BUTTONS */
-.mode-btns{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.mode-btn{padding:12px 22px;border-radius:10px;font-weight:800;font-size:14px;
-  cursor:pointer;border:3px solid transparent;transition:.2s;font-family:'Nunito',sans-serif;flex:1;min-width:130px;text-align:center}
-.mode-btn.study{background:#0f3460;border-color:var(--diamond);color:var(--diamond)}
-.mode-btn.study.on{background:var(--diamond);color:#000}
-.mode-btn.quiz{background:#3d0f0f;border-color:var(--gold);color:var(--gold)}
-.mode-btn.quiz.on{background:var(--gold);color:#000}
-
-/* ARTICLE */
-.article{background:var(--card);color:#2c1a0e;border-radius:14px;
-  border:3px solid var(--dirt);overflow:hidden;margin-bottom:16px}
-.art-head{background:var(--dirt);color:#fff;padding:12px 18px;
-  font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px}
-.art-body{padding:18px;font-size:15px;line-height:1.8}
-.art-body h3{color:var(--dirt);margin:14px 0 6px;font-size:14px;font-weight:800;
-  text-transform:uppercase;letter-spacing:.5px}
-.art-body p{margin-bottom:10px}
-.art-body ul{padding-left:20px;margin-bottom:10px}
-.art-body li{margin-bottom:5px}
-.highlight{background:#fff9c4;border-left:4px solid var(--gold);
-  padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-weight:700}
-.think{background:#e8f5e9;border:2px dashed var(--green);border-radius:10px;
-  padding:12px 16px;margin-top:14px;font-style:italic;color:#1b5e20;font-weight:700}
-
-/* QUIZ */
-.q-card{background:var(--card);color:#2c1a0e;border-radius:14px;
-  border:3px solid var(--stone);margin-bottom:16px;overflow:hidden}
-.q-num{background:var(--stone);color:#fff;padding:8px 16px;
-  font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:space-between}
-.q-text{padding:16px;font-size:15px;font-weight:700;line-height:1.6}
-.q-opts{padding:0 16px 16px;display:flex;flex-direction:column;gap:8px}
-.opt{padding:12px 16px;border-radius:10px;border:2px solid var(--stone);
-  cursor:pointer;font-size:14px;font-weight:700;transition:.2s;background:#fff;color:#2c1a0e;
+.dsub{font-size:11px;color:#90EE90;margin-top:4px;font-weight:700}
+.mbts{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.mbtn{padding:11px 20px;border-radius:10px;font-weight:800;font-size:13px;
+  cursor:pointer;border:3px solid transparent;transition:.2s;font-family:'Nunito',sans-serif;flex:1;min-width:120px;text-align:center}
+.mbtn.study{background:#0f3460;border-color:var(--diamond);color:var(--diamond)}
+.mbtn.study.on{background:var(--diamond);color:#000}
+.mbtn.quiz{background:#3d0f0f;border-color:var(--gold);color:var(--gold)}
+.mbtn.quiz.on{background:var(--gold);color:#000}
+.tprog{background:#0f3460;border:2px solid var(--diamond);border-radius:10px;
+  padding:9px 13px;margin-bottom:14px;font-size:12px;color:var(--diamond);font-weight:700;
   display:flex;align-items:center;gap:10px}
+.tpbar{flex:1;background:#1a1a2e;border-radius:4px;height:9px;overflow:hidden}
+.tpfill{background:linear-gradient(90deg,var(--diamond),#0080ff);height:100%;border-radius:4px;transition:width .4s}
+.art{background:var(--card);color:#2c1a0e;border-radius:12px;border:3px solid var(--dirt);overflow:hidden;margin-bottom:14px}
+.ahead{background:var(--dirt);color:#fff;padding:11px 16px;font-weight:800;font-size:14px;display:flex;align-items:center;gap:8px}
+.abody{padding:16px;font-size:14px;line-height:1.8}
+.abody h3{color:var(--dirt);margin:12px 0 5px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.abody p{margin-bottom:9px}
+.abody ul{padding-left:18px;margin-bottom:9px}
+.abody li{margin-bottom:4px}
+.hl{background:#fff9c4;border-left:4px solid var(--gold);padding:9px 13px;border-radius:0 8px 8px 0;margin:9px 0;font-weight:700;font-size:13px}
+.think{background:#e8f5e9;border:2px dashed var(--green);border-radius:10px;padding:11px 14px;margin-top:12px;font-style:italic;color:#1b5e20;font-weight:700;font-size:13px}
+.attn{background:#fff3cd;border:2px solid #ffc107;border-radius:8px;padding:10px 13px;margin:9px 0;font-size:13px}
+.qcard{background:var(--card);color:#2c1a0e;border-radius:12px;border:3px solid var(--stone);margin-bottom:14px;overflow:hidden}
+.qnum{background:var(--stone);color:#fff;padding:7px 14px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:space-between}
+.qtxt{padding:14px;font-size:14px;font-weight:700;line-height:1.6}
+.qopts{padding:0 14px 14px;display:flex;flex-direction:column;gap:7px}
+.opt{padding:11px 14px;border-radius:10px;border:2px solid var(--stone);cursor:pointer;
+  font-size:13px;font-weight:700;transition:.2s;background:#fff;color:#2c1a0e;display:flex;align-items:center;gap:9px}
 .opt:hover{border-color:var(--grass);background:#f0faf0}
 .opt.correct{background:#d4edda;border-color:var(--green);color:#155724}
 .opt.wrong{background:#f8d7da;border-color:var(--red);color:#721c24}
-.opt.disabled{cursor:not-allowed;opacity:.7}
-.opt-letter{width:28px;height:28px;border-radius:6px;background:var(--grass);
-  color:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:800;flex-shrink:0}
-.feedback{padding:10px 16px 16px;font-size:13px;font-weight:700;display:none}
-.feedback.show{display:block}
-.fb-ok{color:#155724;background:#d4edda;border-radius:8px;padding:8px 12px}
-.fb-err{color:#721c24;background:#f8d7da;border-radius:8px;padding:8px 12px}
-
-/* RESULT */
-.result-box{background:linear-gradient(135deg,#2d5a1b,#1a3a0d);
-  border:3px solid var(--gold);border-radius:16px;padding:24px;
-  text-align:center;margin-top:20px}
-.result-title{font-family:'Press Start 2P',monospace;font-size:14px;
-  color:var(--gold);margin-bottom:10px}
-.result-score{font-size:40px;font-weight:800;color:#fff;margin:10px 0}
-.result-msg{font-size:14px;color:#90EE90;margin-bottom:16px}
-
-/* BUTTONS */
-.btn{padding:12px 22px;border-radius:10px;font-weight:800;font-size:14px;
-  cursor:pointer;border:none;transition:.2s;font-family:'Nunito',sans-serif}
-.btn-green{background:var(--green);color:#fff;box-shadow:0 4px 0 #1e8449}
-.btn-green:hover{transform:translateY(-2px);box-shadow:0 6px 0 #1e8449}
-.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 0 #922b21}
-.btn-gold{background:var(--gold);color:#000;box-shadow:0 4px 0 #b7950b}
-.btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
-
-/* PROGRESS per tab */
-.tab-progress{background:#0f3460;border:2px solid var(--diamond);border-radius:10px;
-  padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--diamond);font-weight:700;
-  display:flex;align-items:center;gap:10px}
-.tab-prog-bar{flex:1;background:#1a1a2e;border-radius:4px;height:10px;overflow:hidden}
-.tab-prog-fill{background:linear-gradient(90deg,var(--diamond),#0080ff);
-  height:100%;border-radius:4px;transition:width .4s}
-
-/* DICA */
-.dica-box{background:#3d3000;border:2px solid var(--gold);border-radius:12px;
-  padding:14px 18px;margin-bottom:14px}
-.dica-title{color:var(--gold);font-size:12px;font-weight:800;
-  text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.dica-text{font-size:14px;color:#ffe082;line-height:1.7}
-
-/* ENGLISH specific */
-.eng-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
-.eng-table th{background:var(--grass);color:#fff;padding:10px;text-align:left}
-.eng-table td{padding:9px 10px;border-bottom:1px solid #ddd;background:#fff;color:#2c1a0e}
-.eng-table tr:nth-child(even) td{background:#f0f8f0}
-
-/* RESPONSIVE */
-@media(max-width:480px){
-  .disc-title{font-size:9px}
-  .art-body{font-size:14px}
-  .q-text{font-size:14px}
-  .opt{font-size:13px;padding:10px 12px}
-}
+.opt.disabled{cursor:not-allowed;opacity:.75}
+.olttr{width:26px;height:26px;border-radius:6px;background:var(--grass);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.fb{padding:9px 14px 14px;font-size:12px;font-weight:700;display:none}
+.fb.show{display:block}
+.fbok{color:#155724;background:#d4edda;border-radius:8px;padding:7px 11px}
+.fberr{color:#721c24;background:#f8d7da;border-radius:8px;padding:7px 11px}
+.btn{padding:11px 20px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;
+  border:none;transition:.2s;font-family:'Nunito',sans-serif}
+.btng{background:var(--green);color:#fff;box-shadow:0 4px 0 #1e8449}
+.btng:hover{transform:translateY(-2px)}
+.btngo{background:var(--gold);color:#000;box-shadow:0 4px 0 #b7950b}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+etbl{width:100%;border-collapse:collapse;margin:9px 0;font-size:13px}
+.etbl th{background:var(--grass);color:#fff;padding:9px;text-align:left}
+.etbl td{padding:8px 9px;border-bottom:1px solid #ddd;background:#fff;color:#2c1a0e}
+.etbl tr:nth-child(even) td{background:#f0f8f0}
+@media(max-width:480px){.abody{font-size:13px}.qtxt{font-size:13px}.opt{font-size:12px;padding:9px 11px}}
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <div class="header">
-  <div class="game-title">⛏️ MISSÃO CONHECIMENTO ⛏️</div>
-  <div class="game-sub">Guilherme • 5º Ano A • Colégio Conexão • 2º Bimestre</div>
+  <div class="gtitle">⛏️ MISSÃO CONHECIMENTO ⛏️</div>
+  <div class="gsub">Guilherme • 5º Ano A • Colégio Conexão • 2º Bimestre 2026</div>
   <div class="hud">
-    <span class="xp-label">⭐ XP:</span>
-    <div class="xp-bar-wrap"><div class="xp-bar" id="globalBar" style="width:0%"></div></div>
-    <div class="score-badge" id="globalScore">💎 0 / 0 acertos</div>
+    <span class="xlb">⭐ XP:</span>
+    <div class="xpw"><div class="xpb" id="gBar" style="width:0%"></div></div>
+    <div class="sbdg" id="gScore">💎 0 / 0</div>
   </div>
 </div>
-
-<!-- TABS -->
 <div class="tabs-wrap">
   <div class="tabs">
     <button class="tab active" onclick="showTab('pt',this)">📖 Português</button>
@@ -176,772 +112,705 @@ body{font-family:'Nunito',sans-serif;background:var(--night);
     <button class="tab" onclick="showTab('en',this)">🇬🇧 Inglês</button>
     <button class="tab" onclick="showTab('ge',this)">🗺️ Geografia</button>
     <button class="tab" onclick="showTab('ci',this)">🔬 Ciências</button>
-    <button class="tab" onclick="showTab('tx',this)">✏️ Produção de Texto</button>
+    <button class="tab" onclick="showTab('tx',this)">✏️ Prod. Texto</button>
   </div>
 </div>
-
 <div class="main">
 
-<!-- ============================================================ -->
-<!-- PORTUGUÊS -->
-<!-- ============================================================ -->
+<!-- ===== PORTUGUÊS ===== -->
 <div class="panel active" id="panel-pt">
-  <div class="disc-header">
-    <span class="disc-icon">📖</span>
-    <div>
-      <div class="disc-title">LÍNGUA PORTUGUESA</div>
-      <div class="disc-sub">Formação das palavras • Concordância verbal • Prova: 15/06</div>
-    </div>
+  <div class="dhead"><span class="dicon">📖</span>
+    <div><div class="dtitle">LÍNGUA PORTUGUESA</div>
+    <div class="dsub">Formação das Palavras • Concordância Verbal • Prova: 15/06</div></div>
   </div>
-  <div class="mode-btns">
-    <button class="mode-btn study on" onclick="setMode('pt','study',this)">📖 Estudar</button>
-    <button class="mode-btn quiz" onclick="setMode('pt','quiz',this)">⚔️ Testar</button>
+  <div class="mbts">
+    <button class="mbtn study on" onclick="setMode('pt','study',this)">📖 Estudar</button>
+    <button class="mbtn quiz" onclick="setMode('pt','quiz',this)">⚔️ Testar</button>
   </div>
-  <div class="tab-progress">
-    💡 Progresso nesta disciplina:
-    <div class="tab-prog-bar"><div class="tab-prog-fill" id="prog-pt" style="width:0%"></div></div>
-    <span id="prog-pt-txt">0%</span>
-  </div>
-
-  <!-- STUDY -->
+  <div class="tprog">💡 Progresso:<div class="tpbar"><div class="tpfill" id="prog-pt" style="width:0%"></div></div><span id="prog-pt-t">0%</span></div>
   <div id="study-pt">
-    <div class="article">
-      <div class="art-head">⛏️ Formação das Palavras — Prefixos</div>
-      <div class="art-body">
-        <p>Você sabia que podemos criar palavras novas juntando pedaços? É como no Minecraft, onde você combina materiais para criar ferramentas!</p>
-        <h3>Prefixo DES-</h3>
-        <p>O prefixo <strong>des-</strong> aparece no início de uma palavra e indica a ideia de <strong>ação contrária</strong>. É como "desfazer" algo no jogo!</p>
-        <div class="highlight">ligar → desligar | montar → desmontar | fazer → desfazer</div>
-        <h3>Prefixo RE-</h3>
-        <p>O prefixo <strong>re-</strong> indica a ideia de <strong>repetição</strong>, fazer de novo. Como quando você respawna!</p>
-        <div class="highlight">fazer → refazer | abrir → reabrir | começo → recomeçar | ler → reler</div>
-        <div class="think">💭 Pare e pense: Se "fazer" e "refazer" existem, o que seria "redesfazer"? Qual seria o sentido?</div>
-      </div>
-    </div>
 
-    <div class="article">
-      <div class="art-head">🪵 Formação das Palavras — Sufixos e Composição</div>
-      <div class="art-body">
-        <h3>Sufixos</h3>
-        <p>Os <strong>sufixos</strong> ficam no FINAL da palavra e mudam o seu sentido:</p>
-        <div class="highlight">ativo + <strong>-idade</strong> = atividade | ativo + <strong>-ismo</strong> = ativismo</div>
-        <h3>Palavras Compostas — Justaposição</h3>
-        <p>Duas palavras se juntam sem perder nenhuma letra. Como blocos empilhados!</p>
-        <div class="highlight">passa + tempo = <strong>passatempo</strong> (justaposição)</div>
-        <h3>Palavras Compostas — Aglutinação</h3>
-        <p>Duas palavras se juntam, mas uma perde uma letra ou sílaba, como se derretessem juntas:</p>
-        <div class="highlight">perna + alta = <strong>pernalta</strong> (aglutinação — perdeu o "a" de "alta")</div>
-        <div class="think">💭 Pare e pense: "planalto" vem de "plano" + "alto". É justaposição ou aglutinação?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">⛏️ Formação das Palavras — Prefixo DES-</div>
+    <div class="abody">
+      <p>Os <strong>prefixos</strong> são elementos que vêm ANTES da palavra e mudam seu sentido. É como adicionar um modificador ao seu personagem no Minecraft!</p>
+      <h3>Prefixo DES-</h3>
+      <p>O prefixo <strong>des-</strong> indica <strong>ação contrária</strong> — fazer o oposto:</p>
+      <div class="hl">ligar → <strong>des</strong>ligar | montar → <strong>des</strong>montar | fazer → <strong>des</strong>fazer</div>
+      <h3>Prefixo RE-</h3>
+      <p>O prefixo <strong>re-</strong> indica <strong>repetição</strong> — fazer de novo, como respawnar:</p>
+      <div class="hl">abrir → <strong>re</strong>abrir | começar → <strong>re</strong>começar | fazer → <strong>re</strong>fazer | ler → <strong>re</strong>ler</div>
+      <div class="attn">⚠️ Atenção: nem todo RE- tem sentido de repetição! Em "relógio" e "remoto" o RE- não é prefixo — faz parte da palavra original.</div>
+      <div class="think">💭 Pare e pense: Se "fazer" → "desfazer" e "fazer" → "refazer", o que "redesfazer" significaria?</div>
+    </div></div>
 
-    <div class="article">
-      <div class="art-head">⚡ Concordância Verbal</div>
-      <div class="art-body">
-        <p>Na língua portuguesa, o <strong>verbo</strong> sempre precisa concordar com o <strong>sujeito</strong>. Se o sujeito está no singular, o verbo vai para o singular. Se está no plural, o verbo vai para o plural!</p>
-        <div class="highlight">
-          O plástico <strong>leva</strong> 400 anos. (sujeito singular → verbo singular)<br>
-          Os plásticos <strong>levam</strong> 400 anos. (sujeito plural → verbo plural)
-        </div>
-        <div class="highlight">
-          Eu <strong>faço</strong> | Nós <strong>mudamos</strong> | Os animais <strong>morrem</strong>
-        </div>
-        <p>Imagine que o verbo é um espelho do sujeito. Se o sujeito "cresce", o verbo também "cresce" junto!</p>
-        <div class="think">💭 Pare e pense: "A preservação E a reciclagem deve/devem ser um compromisso." Qual verbo é o certo? Por quê?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">🪵 Formação das Palavras — Sufixos</div>
+    <div class="abody">
+      <p>Os <strong>sufixos</strong> ficam no FINAL da palavra e criam novas palavras com novos sentidos:</p>
+      <div class="hl">ativ + <strong>-idade</strong> = atividade (qualidade) | ativ + <strong>-ismo</strong> = ativismo (movimento, tendência)</div>
+      <p>A palavra raiz <strong>ativo</strong> originou "atividade" e "ativismo" — duas palavras diferentes, mesma raiz, sufixos diferentes!</p>
+      <p>Outro exemplo da apostila: <strong>atleta</strong> + sufixo <strong>-ismo</strong> = atletismo (a prática do esporte).</p>
+      <div class="think">💭 Pare e pense: Que outras palavras você conhece que terminam em -idade ou -ismo? Qual é a ideia que cada sufixo passa?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">🧱 Palavras Compostas — Justaposição e Aglutinação</div>
+    <div class="abody">
+      <p>Palavras compostas são formadas pela <strong>união de duas palavras primitivas</strong> (dois radicais). Existem dois jeitos de fazer isso:</p>
+      <h3>Justaposição — as palavras ficam INTEIRAS</h3>
+      <div class="hl">passa + tempo = <strong>passatempo</strong> (nenhuma letra foi perdida!)</div>
+      <p>Posições do futebol formadas por justaposição:</p>
+      <div class="hl">centro + campo = <strong>centrocampo</strong> | lateral + esquerdo = <strong>lateralesquerdo</strong><br>meio + direito = <strong>meiodireito</strong> | quarto + zagueiro = <strong>quartozagueiro</strong></div>
+      <h3>Aglutinação — uma palavra PERDE letras ao se juntar</h3>
+      <div class="hl">perna + <strike>a</strike>lta = <strong>pernalta</strong> (perdeu o "a" de "alta")<br>
+      vinho + <strike>a</strike>cre = <strong>vinagre</strong> | plano + <strike>o</strike>alto = <strong>planalto</strong><br>
+      boca + <strike>a</strike>berta = <strong>bocaberta</strong> | cabeça + baixo = <strong>cabeçabaixo</strong></div>
+      <div class="attn">🎮 Curiosidade da apostila: a palavra <strong>"você"</strong> também foi formada por aglutinação! Ela vem de <strong>"vossa + mercê"</strong> — duas palavras que se juntaram e perderam sílabas ao longo do tempo.</div>
+      <div class="think">💭 Pare e pense: "Planalto" vem de "plano + alto". Qual letra foi perdida? É justaposição ou aglutinação?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">⚡ Concordância Verbal — O Verbo Obedece o Sujeito</div>
+    <div class="abody">
+      <p>O <strong>sujeito</strong> é o termo sobre o qual o verbo diz algo ou que pratica a ação. O <strong>verbo sempre concorda com o sujeito</strong> em número (singular/plural).</p>
+      <h3>Sujeito Simples — um só núcleo</h3>
+      <div class="hl">A reciclagem <strong>deve</strong> ser realizada por todos. (singular)<br>
+      Todos <strong>devem</strong> reciclar. (plural)</div>
+      <h3>Sujeito Composto — dois ou mais núcleos</h3>
+      <p>Quando o sujeito tem DOIS elementos ligados por "e", o verbo vai para o <strong>plural</strong>:</p>
+      <div class="hl">A reciclagem E a preservação <strong>devem</strong> ser compromisso de todos nós.<br>
+      A escola E a comunidade <strong>são</strong> responsáveis pela preservação ambiental.</div>
+      <h3>Exemplos do texto do plástico (apostila):</h3>
+      <div class="hl">O plástico <strong>leva</strong> mais de 400 anos para se decompor. (singular)<br>
+      Os materiais plásticos <strong>levam</strong> mais de 400 anos. (plural)<br>
+      100 mil animais marinhos <strong>morrem</strong> por causa do plástico a cada ano. (plural)<br>
+      1 milhão de garrafas <strong>são</strong> compradas a cada minuto. (plural)<br>
+      A fauna marinha <strong>morre</strong> por causa do plástico. (singular)</div>
+      <div class="attn">📋 Dados do texto que podem cair na prova:<br>
+      • O plástico demora <strong>mais de 400 anos</strong> para se decompor<br>
+      • Até 2050 haverá <strong>mais plástico</strong> nos oceanos do que peixes<br>
+      • <strong>100 mil</strong> animais marinhos morrem por causa do plástico a cada ano<br>
+      • <strong>91%</strong> do plástico utilizado no mundo não é reciclado<br>
+      • <strong>1 milhão</strong> de garrafas plásticas são compradas a cada minuto<br>
+      • <strong>500 bilhões</strong> de sacolas plásticas são usadas todos os anos</div>
+      <div class="think">💭 Pare e pense: "O material plástico E o esgoto poluem os rios." O verbo "poluem" está correto? Por quê?</div>
+    </div></div>
+
   </div>
-
-  <!-- QUIZ PT -->
   <div id="quiz-pt" style="display:none"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- MATEMÁTICA -->
-<!-- ============================================================ -->
+<!-- ===== MATEMÁTICA ===== -->
 <div class="panel" id="panel-mt">
-  <div class="disc-header">
-    <span class="disc-icon">🔢</span>
-    <div>
-      <div class="disc-title">MATEMÁTICA</div>
-      <div class="disc-sub">Ângulos • Triângulos • Árvore de possibilidades • Multiplicação e Divisão • Prova: 16/06</div>
-    </div>
+  <div class="dhead"><span class="dicon">🔢</span>
+    <div><div class="dtitle">MATEMÁTICA</div>
+    <div class="dsub">Ângulos • Triângulos • Árvore de Possibilidades • Mult. e Divisão • Prova: 16/06</div></div>
   </div>
-  <div class="mode-btns">
-    <button class="mode-btn study on" onclick="setMode('mt','study',this)">📖 Estudar</button>
-    <button class="mode-btn quiz" onclick="setMode('mt','quiz',this)">⚔️ Testar</button>
+  <div class="mbts">
+    <button class="mbtn study on" onclick="setMode('mt','study',this)">📖 Estudar</button>
+    <button class="mbtn quiz" onclick="setMode('mt','quiz',this)">⚔️ Testar</button>
   </div>
-  <div class="tab-progress">
-    💡 Progresso nesta disciplina:
-    <div class="tab-prog-bar"><div class="tab-prog-fill" id="prog-mt" style="width:0%"></div></div>
-    <span id="prog-mt-txt">0%</span>
-  </div>
-
+  <div class="tprog">💡 Progresso:<div class="tpbar"><div class="tpfill" id="prog-mt" style="width:0%"></div></div><span id="prog-mt-t">0%</span></div>
   <div id="study-mt">
-    <div class="article">
-      <div class="art-head">📐 Ângulos</div>
-      <div class="art-body">
-        <p>Um <strong>ângulo</strong> é formado por duas semirretas que saem do mesmo ponto. Esse ponto central se chama <strong>vértice</strong>. Os lados são as duas semirretas!</p>
-        <p>Medimos ângulos em <strong>graus (°)</strong> com o <strong>transferidor</strong>. O centro do transferidor vai no vértice, a linha de fé alinhada com um lado.</p>
-        <h3>Tipos de ângulos</h3>
-        <div class="highlight">
-          🔲 <strong>Ângulo Reto</strong>: mede exatamente 90° (1/4 de volta — canto de folha de papel!)<br>
-          🔺 <strong>Ângulo Agudo</strong>: mede MENOS de 90° (como uma tesoura fechada)<br>
-          🔻 <strong>Ângulo Obtuso</strong>: mede MAIS de 90° e MENOS de 180° (como um leque aberto)
-        </div>
-        <div class="think">💭 Pare e pense: Qual ângulo tem o ponteiro de 12h e o de 3h de um relógio? Reto, agudo ou obtuso?</div>
-      </div>
-    </div>
 
-    <div class="article">
-      <div class="art-head">🔺 Triângulos</div>
-      <div class="art-body">
-        <p>Triângulos são polígonos com <strong>3 lados</strong>. Existem dois jeitos de classificá-los:</p>
-        <h3>Pela medida dos LADOS:</h3>
-        <div class="highlight">
-          ▲ <strong>Equilátero</strong>: os 3 lados têm a mesma medida<br>
-          ▲ <strong>Isósceles</strong>: apenas 2 lados têm a mesma medida<br>
-          ▲ <strong>Escaleno</strong>: os 3 lados têm medidas diferentes
-        </div>
-        <p>Dica: todo equilátero também é isósceles, mas nem todo isósceles é equilátero!</p>
-        <h3>Pela medida dos ÂNGULOS:</h3>
-        <div class="highlight">
-          🔲 <strong>Retângulo</strong>: tem um ângulo reto (90°) e dois agudos<br>
-          🔺 <strong>Acutângulo</strong>: os 3 ângulos são agudos<br>
-          🔻 <strong>Obtusângulo</strong>: tem um ângulo obtuso e dois agudos
-        </div>
-        <div class="think">💭 Pare e pense: Um triângulo pode ter dois ângulos retos? Por quê não?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">📐 Ângulos — Conceito e Medidas</div>
+    <div class="abody">
+      <p>Um <strong>ângulo</strong> é formado por <strong>duas semirretas</strong> com a mesma origem, chamada <strong>vértice</strong>. Os dois lados são as semirretas que partem do vértice.</p>
+      <h3>Ângulos e Giros (apostila)</h3>
+      <p>Os ângulos podem ser associados a giros — quanto maior o giro, maior a abertura do ângulo:</p>
+      <div class="hl">🔄 Giro de <strong>1/4 de volta</strong> = <strong>90°</strong> (ângulo reto)<br>
+      🔄 Giro de <strong>1/2 volta</strong> = <strong>180°</strong> (ângulo raso)<br>
+      🔄 Giro de <strong>1 volta completa</strong> = <strong>360°</strong></div>
+      <p><strong>Exemplo da apostila:</strong> João olhava para o mar. Para caminhar em direção às pedras, ele precisou dar um giro de <strong>1/4 de volta</strong>. Se João girar <strong>meia volta</strong>, verá o lado oposto ao mar.</p>
+      <h3>Medindo ângulos com o Transferidor</h3>
+      <p>O <strong>transferidor</strong> é o instrumento usado para medir ângulos em graus. Passos:</p>
+      <div class="hl">1️⃣ Posicionar o <strong>centro</strong> do transferidor no <strong>vértice</strong> do ângulo<br>
+      2️⃣ Alinhar a <strong>linha de fé</strong> com um dos lados do ângulo<br>
+      3️⃣ Ler o valor onde o outro lado do ângulo passa no transferidor</div>
+      <h3>Tipos de Ângulo</h3>
+      <div class="hl">🔲 <strong>Ângulo Reto</strong>: mede exatamente <strong>90°</strong> (1/4 de volta) — canto de folha de papel<br>
+      🔺 <strong>Ângulo Agudo</strong>: mede <strong>menos de 90°</strong> — como uma tesoura fechada<br>
+      🔻 <strong>Ângulo Obtuso</strong>: mede <strong>mais de 90° e menos de 180°</strong> — como um leque aberto</div>
+      <div class="think">💭 Pare e pense: O ponteiro de 12h e o de 3h de um relógio formam qual tipo de ângulo? E o de 12h com o de 6h?</div>
+    </div></div>
 
-    <div class="article">
-      <div class="art-head">🎲 Árvore de Possibilidades</div>
-      <div class="art-body">
-        <p>A <strong>árvore de possibilidades</strong> é um jeito de listar TODOS os resultados que podem acontecer num experimento. É como mapear todos os caminhos possíveis num jogo!</p>
-        <p>Exemplo: jogamos uma moeda 2 vezes. O que pode sair?</p>
-        <div class="highlight">
-          1ª jogada → 2ª jogada → resultado<br>
-          Cara → Cara = (Cara, Cara)<br>
-          Cara → Coroa = (Cara, Coroa)<br>
-          Coroa → Cara = (Coroa, Cara)<br>
-          Coroa → Coroa = (Coroa, Coroa)
-        </div>
-        <p>São <strong>4 possibilidades</strong> ao total! Multiplicamos: 2 opções × 2 opções = 4 resultados.</p>
-        <div class="think">💭 Pare e pense: Se jogarmos 3 moedas, quantas possibilidades existem?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">🔺 Triângulos — Classificação Completa</div>
+    <div class="abody">
+      <p>Triângulos são polígonos com <strong>3 lados</strong>. Podem ser classificados de dois jeitos:</p>
+      <h3>Pela medida dos LADOS</h3>
+      <div class="hl">▲ <strong>Equilátero</strong>: os 3 lados têm a <strong>mesma medida</strong> — Bruno no geoplano<br>
+      ▲ <strong>Isósceles</strong>: apenas <strong>2 lados</strong> têm a mesma medida — Vinícius no geoplano<br>
+      ▲ <strong>Escaleno</strong>: os <strong>3 lados</strong> têm medidas <strong>diferentes</strong> — Carla no geoplano</div>
+      <div class="attn">⚠️ Regra importante da apostila: <strong>Todo triângulo equilátero É isósceles</strong>, mas <strong>nem todo isósceles é equilátero!</strong></div>
+      <h3>Pela medida dos ÂNGULOS</h3>
+      <div class="hl">🔲 <strong>Retângulo</strong>: tem <strong>1 ângulo reto (90°)</strong> e 2 ângulos agudos — Cíntia no geoplano<br>
+      🔺 <strong>Acutângulo</strong>: tem os <strong>3 ângulos agudos</strong> (todos menores que 90°) — Taís no geoplano<br>
+      🔻 <strong>Obtusângulo</strong>: tem <strong>1 ângulo obtuso</strong> e 2 ângulos agudos — Camilo no geoplano</div>
+      <div class="think">💭 Pare e pense: Um triângulo pode ter dois ângulos retos? Por quê não? (Dica: pense na soma dos ângulos internos!)</div>
+    </div></div>
 
-    <div class="article">
-      <div class="art-head">✖️➗ Multiplicação e Divisão em Situações-Problema</div>
-      <div class="art-body">
-        <p>Nas situações-problema, precisamos identificar qual operação usar. Algumas dicas:</p>
-        <div class="highlight">
-          <strong>Multiplicação:</strong> quando repetimos grupos iguais<br>
-          Ex: 15 fardos com 12 caixas cada = 15 × 12 = 180 caixas
-        </div>
-        <div class="highlight">
-          <strong>Divisão:</strong> quando repartimos igualmente<br>
-          Ex: 1044 gibis para 9 escolas = 1044 ÷ 9 = 116 gibis por escola
-        </div>
-        <p>Na divisão com números grandes, fazemos por etapas: dividimos casa por casa (CM → DM → UM → C → DU).</p>
-        <div class="think">💭 Pare e pense: Rute faz pães de segunda a sexta. Fevereiro de 2023 tinha quantos dias úteis? (Use o calendário!)</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">🎲 Árvore de Possibilidades</div>
+    <div class="abody">
+      <p>A <strong>árvore de possibilidades</strong> lista TODOS os resultados possíveis de um experimento. Como mapear todos os caminhos de uma dungeon!</p>
+      <h3>Exemplo 1 — Duas moedas honestas (apostila)</h3>
+      <p>Uma "moeda honesta" tem a mesma chance de sair cara ou coroa:</p>
+      <div class="hl">Cara → Cara = (C, C)<br>
+      Cara → Coroa = (C, Co)<br>
+      Coroa → Cara = (Co, C)<br>
+      Coroa → Coroa = (Co, Co)<br>
+      <strong>Total: 4 possibilidades</strong> (2 × 2 = 4)</div>
+      <h3>Exemplo 2 — Três moedas (apostila)</h3>
+      <p>Com 3 moedas: 2 × 2 × 2 = <strong>8 possibilidades</strong></p>
+      <h3>Exemplo 3 — Etnias e representantes (apostila)</h3>
+      <p>Urna 1: Yanomami, Guarani, Tupinambá | Urna 2: Gabriel, Luana, Breno</p>
+      <div class="hl">Yanomami+Gabriel | Yanomami+Luana | Yanomami+Breno<br>
+      Guarani+Gabriel | Guarani+Luana | Guarani+Breno<br>
+      Tupinambá+Gabriel | Tupinambá+Luana | Tupinambá+Breno<br>
+      <strong>Total: 9 possibilidades</strong> (3 × 3 = 9) — e cada uma tem a mesma chance!</div>
+      <div class="think">💭 Pare e pense: Se houvesse uma terceira urna com 2 nomes, quantas possibilidades teríamos no total?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">✖️➗ Multiplicação e Divisão — Situações-Problema</div>
+    <div class="abody">
+      <h3>Multiplicação — repetindo grupos iguais</h3>
+      <div class="hl">📦 15 fardos × 12 caixas = <strong>180 caixas</strong> de suco<br>
+      🌳 26 dias × 32 mudas = <strong>832 mudas</strong> plantadas<br>
+      💳 12 parcelas × R$24 = <strong>R$288,00</strong> | 18 parcelas × R$120 = <strong>R$2.160,00</strong><br>
+      💳 15 parcelas × R$56 = <strong>R$840,00</strong> | 24 parcelas × R$144 = <strong>R$3.456,00</strong></div>
+      <h3>Problema da Rute (apostila)</h3>
+      <p>Rute faz pães de segunda a sexta. Em fevereiro de 2023 (28 dias, começando quarta-feira), ela trabalhou <strong>20 dias úteis</strong>:</p>
+      <div class="hl">20 dias × 14 pães = <strong>280 pães</strong> em fevereiro de 2023</div>
+      <h3>Algoritmo de Divisão — Situações-Problema</h3>
+      <div class="hl">🏖️ 151.424 turistas ÷ 7 praias = <strong>21.632 turistas por praia</strong><br>
+      🏭 861.942 peças ÷ 6 meses = <strong>143.657 peças por mês</strong><br>
+      📚 1.044 gibis ÷ 9 escolas = <strong>116 gibis por escola</strong></div>
+      <h3>Divisão com dois dígitos no divisor</h3>
+      <p>Na divisão com divisor de 2 dígitos (ex: 69.931 ÷ 17), trabalhamos por etapas — dividimos centenas, depois dezenas, depois unidades:</p>
+      <div class="hl">Exemplo: 69.931 ÷ 17 = <strong>4.113</strong><br>
+      130.935 ÷ 12 = <strong>10.911,25</strong> | 126.317 ÷ 55 = <strong>2.296,67</strong></div>
+      <div class="think">💭 Pare e pense: Para calcular 13×27, como você faria com o algoritmo usual? (13×20 + 13×7)</div>
+    </div></div>
+
   </div>
-
   <div id="quiz-mt" style="display:none"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- HISTÓRIA -->
-<!-- ============================================================ -->
+<!-- ===== HISTÓRIA ===== -->
 <div class="panel" id="panel-hi">
-  <div class="disc-header">
-    <span class="disc-icon">🏛️</span>
-    <div>
-      <div class="disc-title">HISTÓRIA</div>
-      <div class="disc-sub">O Mundo Romano e a Cidade de Roma • Prova: 17/06</div>
-    </div>
+  <div class="dhead"><span class="dicon">🏛️</span>
+    <div><div class="dtitle">HISTÓRIA</div>
+    <div class="dsub">O Mundo Romano e a Cidade de Roma • Prova: 17/06</div></div>
   </div>
-  <div class="mode-btns">
-    <button class="mode-btn study on" onclick="setMode('hi','study',this)">📖 Estudar</button>
-    <button class="mode-btn quiz" onclick="setMode('hi','quiz',this)">⚔️ Testar</button>
+  <div class="mbts">
+    <button class="mbtn study on" onclick="setMode('hi','study',this)">📖 Estudar</button>
+    <button class="mbtn quiz" onclick="setMode('hi','quiz',this)">⚔️ Testar</button>
   </div>
-  <div class="tab-progress">
-    💡 Progresso nesta disciplina:
-    <div class="tab-prog-bar"><div class="tab-prog-fill" id="prog-hi" style="width:0%"></div></div>
-    <span id="prog-hi-txt">0%</span>
-  </div>
-
+  <div class="tprog">💡 Progresso:<div class="tpbar"><div class="tpfill" id="prog-hi" style="width:0%"></div></div><span id="prog-hi-t">0%</span></div>
   <div id="study-hi">
-    <div class="article">
-      <div class="art-head">🐺 A Origem de Roma</div>
-      <div class="art-body">
-        <p>Por volta do <strong>século VIII a.C.</strong>, aldeias de povos latinos às margens do <strong>Rio Tibre</strong>, na <strong>Península Itálica</strong>, se uniram para se defender de invasores. Esse conjunto de aldeias deu origem à cidade de <strong>Roma</strong>!</p>
-        <p>Entre os séculos VII e V a.C., Roma já era uma cidade murada, governada por um <strong>rei</strong>. Ele era ao mesmo tempo juiz, chefe militar e chefe religioso. Mas seus poderes eram limitados pelo <strong>Senado</strong> (conselho de anciãos) e pela <strong>Assembleia</strong> (pessoas que serviam o Exército).</p>
-        <div class="highlight">🐺 Lenda: Segundo o mito, Roma foi fundada pelos irmãos <strong>Rômulo e Remo</strong>. Eles foram abandonados bebês, amamentados por uma loba e criados por um pastor. Quando adultos, fundaram Roma no monte onde foram encontrados!</div>
-        <div class="think">💭 Pare e pense: O que é um mito? Por que Roma tinha tanto a história real quanto uma lenda sobre sua fundação?</div>
-      </div>
-    </div>
 
-    <div class="article">
-      <div class="art-head">⚔️ República, Patrícios e Plebeus</div>
-      <div class="art-body">
-        <p>Depois dos reis, Roma tornou-se uma <strong>República</strong> (do latim: "coisa pública, de todos"). Mas na prática, era dominada pelos <strong>patrícios</strong> — as famílias ricas e poderosas.</p>
-        <p>Os <strong>plebeus</strong> eram o povo comum. Eles lutaram por direitos:</p>
-        <div class="highlight">
-          ✅ Criação do cargo de <strong>Tribuno da Plebe</strong> — para defender os interesses do povo<br>
-          ✅ Fim da escravidão por dívidas (em 326 a.C.)<br>
-          ✅ <strong>Lei das Doze Tábuas</strong> — primeiro código de leis escrito, no século V a.C.
-        </div>
-        <p>A Lei das Doze Tábuas foi muito importante porque antes as leis eram orais e os juízes podiam mudar as regras. Com as leis escritas, qualquer pessoa que soubesse ler podia saber seus direitos!</p>
-        <div class="think">💭 Pare e pense: Como o <strong>Direito Romano</strong> influenciou as leis que temos hoje no Brasil?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">🐺 Origem de Roma e o Período dos Reis</div>
+    <div class="abody">
+      <p>Por volta do <strong>século VIII a.C.</strong>, aldeias de povos latinos às margens do <strong>Rio Tibre</strong>, na <strong>Península Itálica</strong>, uniram-se para se defender de invasores — dando origem à cidade de <strong>Roma</strong>.</p>
+      <p>Entre os séculos VII e V a.C., Roma era uma cidade murada governada por um <strong>rei</strong>, que era ao mesmo tempo <strong>juiz, chefe militar e chefe religioso</strong>. Seus poderes eram limitados pelo <strong>Senado</strong> (conselho de anciãos) e pela <strong>Assembleia</strong> (cidadãos capazes de servir o Exército).</p>
+      <div class="hl">🐺 <strong>Lenda de fundação:</strong> Roma teria sido fundada pelos irmãos <strong>Rômulo e Remo</strong>. Abandonados bebês, foram amamentados por uma <strong>loba</strong> e criados por um pastor. Adultos, voltaram ao monte onde foram encontrados e fundaram Roma. A Loba Capitolina é uma famosa escultura em bronze que representa esse mito.</div>
+      <div class="think">💭 Pare e pense: Por que Roma tinha tanto uma explicação histórica quanto uma lenda sobre sua fundação? Qual a diferença entre mito e história?</div>
+    </div></div>
 
-    <div class="article">
-      <div class="art-head">🌊 A Conquista do Mediterrâneo</div>
-      <div class="art-body">
-        <p>Durante a República, Roma se expandiu muito! Entre os séculos VI e V a.C., controlou toda a <strong>Península Itálica</strong>. No século I a.C., controlava a maior parte dos territórios ao redor do <strong>mar Mediterrâneo</strong>.</p>
-        <div class="highlight">🌊 Os romanos chamavam o Mediterrâneo de <strong>"Mare Nostrum"</strong> — que em latim significa "nosso mar"!</div>
-        <p>Junto com a expansão veio a <strong>escravidão</strong>: prisioneiros de guerras eram escravizados e trabalhavam nas minas, no campo e nas cidades romanas.</p>
-        <div class="think">💭 Pare e pense: Por que os romanos chamavam o Mediterrâneo de "nosso mar"? Isso era justo para os outros povos?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">⚖️ República — Patrícios, Plebeus e Conquistas</div>
+    <div class="abody">
+      <p>Após os reis, Roma tornou-se uma <strong>República</strong> (do latim: <em>res</em> = "coisa" + <em>publica</em> = "pública, de todos"). Mas na prática, era dominada pelos <strong>patrícios</strong> — as famílias ricas e nobres.</p>
+      <p>Os <strong>plebeus</strong> (povo comum) não podiam exercer cargos públicos inicialmente. Com o tempo, se organizaram e conquistaram direitos:</p>
+      <div class="hl">✅ Criação do <strong>Tribuno da Plebe</strong> — cargo para defender os interesses do povo<br>
+      ✅ <strong>Fim da escravidão por dívidas</strong> em 326 a.C.<br>
+      ✅ <strong>Lei das Doze Tábuas</strong> (século V a.C.) — primeiro código de leis ESCRITO<br>
+      ⚠️ Mas: cargos públicos continuaram concentrados nos mãos dos que haviam enriquecido</div>
+      <h3>Os Irmãos Graco (apostila)</h3>
+      <p>No século II a.C., <strong>Tibério e Caio Graco</strong> exerceram o cargo de tribuno da plebe. Propuseram dividir as terras dos patrícios e distribuí-las aos plebeus:</p>
+      <div class="hl">🗡️ <strong>Tibério Graco</strong>: enfrentou forte oposição do Senado e foi <strong>condenado à morte</strong><br>
+      🗡️ <strong>Caio Graco</strong>: retomou o projeto do irmão, conseguiu alguns avanços (distribuição de terras), mas morreu em confrontos com opositores. Após sua morte, as conquistas foram abolidas pelo Senado.</div>
+      <div class="think">💭 Pare e pense: A Lei das Doze Tábuas foi uma vitória para quem? Por quê escrever as leis era tão importante?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">🌊 Conquista do Mediterrâneo e Escravidão</div>
+    <div class="abody">
+      <p>Durante a República, Roma se expandiu muito:</p>
+      <div class="hl">📍 Séculos VI-V a.C.: Roma controlou toda a <strong>Península Itálica</strong><br>
+      📍 Século I a.C.: controlava a maior parte dos territórios ao redor do <strong>Mar Mediterrâneo</strong><br>
+      🌊 Os romanos chamavam o Mediterrâneo de <strong>"Mare Nostrum"</strong> — "nosso mar" em latim</div>
+      <h3>A Escravidão em Roma</h3>
+      <p>A expansão trouxe escravidão: <strong>prisioneiros de guerras</strong> podiam ser escravizados. Os escravizados trabalhavam nas minas, no campo e nas cidades. A escravidão por dívidas também existia, mas foi abolida em 326 a.C.</p>
+      <div class="attn">📋 Questão da apostila: sobre a escravidão romana, a alternativa CORRETA é: "Em Roma, era comum que prisioneiros de guerra fossem escravizados." As demais alternativas são FALSAS.</div>
+      <h3>De República a Império</h3>
+      <p>Em <strong>30 a.C.</strong>, Roma passou por transformações políticas e deixou de ser uma República para se tornar um <strong>Império</strong>, com um imperador concentrando o poder.</p>
+      <div class="think">💭 Pare e pense: Quais eram as diferenças entre a República e o Império Romano?</div>
+    </div></div>
+
   </div>
-
   <div id="quiz-hi" style="display:none"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- INGLÊS -->
-<!-- ============================================================ -->
+<!-- ===== INGLÊS ===== -->
 <div class="panel" id="panel-en">
-  <div class="disc-header">
-    <span class="disc-icon">🇬🇧</span>
-    <div>
-      <div class="disc-title">INGLÊS</div>
-      <div class="disc-sub">Unit 4 — Should / Shouldn't / Must / Mustn't • Prova: 18/06</div>
-    </div>
+  <div class="dhead"><span class="dicon">🇬🇧</span>
+    <div><div class="dtitle">INGLÊS — UNIT 4</div>
+    <div class="dsub">Should / Shouldn't / Must / Mustn't • Prova: 18/06</div></div>
   </div>
-  <div class="mode-btns">
-    <button class="mode-btn study on" onclick="setMode('en','study',this)">📖 Estudar</button>
-    <button class="mode-btn quiz" onclick="setMode('en','quiz',this)">⚔️ Testar</button>
+  <div class="mbts">
+    <button class="mbtn study on" onclick="setMode('en','study',this)">📖 Estudar</button>
+    <button class="mbtn quiz" onclick="setMode('en','quiz',this)">⚔️ Testar</button>
   </div>
-  <div class="tab-progress">
-    💡 Progresso nesta disciplina:
-    <div class="tab-prog-bar"><div class="tab-prog-fill" id="prog-en" style="width:0%"></div></div>
-    <span id="prog-en-txt">0%</span>
-  </div>
-
+  <div class="tprog">💡 Progresso:<div class="tpbar"><div class="tpfill" id="prog-en" style="width:0%"></div></div><span id="prog-en-t">0%</span></div>
   <div id="study-en">
-    <div class="article">
-      <div class="art-head">🗣️ Should e Shouldn't — Conselho</div>
-      <div class="art-body">
-        <p>Usamos <strong>should</strong> para dar um conselho — dizer o que é uma boa ideia fazer. E <strong>shouldn't</strong> para dizer o que não é uma boa ideia!</p>
-        <div class="highlight">
-          ✅ You <strong>should</strong> take some medicine. (Você deveria tomar remédio.)<br>
-          ❌ You <strong>shouldn't</strong> be on the phone all the time. (Você não deveria ficar no celular o tempo todo.)
-        </div>
-        <table class="eng-table">
-          <tr><th>Situação</th><th>Should ✅</th><th>Shouldn't ❌</th></tr>
-          <tr><td>Torceu o tornozelo</td><td>She should put ice on it.</td><td>She shouldn't run or walk.</td></tr>
-          <tr><td>No celular toda hora</td><td>You should take a break.</td><td>You shouldn't be on the phone all the time.</td></tr>
-        </table>
-        <div class="think">💭 Think: Your friend has a fever. Write 2 sentences using should and shouldn't to give advice!</div>
-      </div>
-    </div>
 
-    <div class="article">
-      <div class="art-head">⚠️ Must e Mustn't — Obrigação</div>
-      <div class="art-body">
-        <p>Usamos <strong>must</strong> para dizer o que é <strong>obrigatório</strong> fazer. E <strong>mustn't</strong> para dizer o que é <strong>proibido</strong>!</p>
-        <div class="highlight">
-          ✅ You <strong>must</strong> look before you cross the street. (Você deve olhar antes de atravessar.)<br>
-          ✅ We <strong>must</strong> cross on the pedestrian crossing. (Devemos atravessar na faixa.)<br>
-          ❌ You <strong>mustn't</strong> eat a lot of candy. (Você não deve comer muitos doces.)<br>
-          ✅ You <strong>must</strong> get vaccinated. (Você deve se vacinar.)
-        </div>
-        <table class="eng-table">
-          <tr><th>Palavra</th><th>Uso</th><th>Tradução</th></tr>
-          <tr><td><strong>should</strong></td><td>Conselho / recomendação</td><td>deveria / é uma boa ideia</td></tr>
-          <tr><td><strong>shouldn't</strong></td><td>Conselho negativo</td><td>não deveria</td></tr>
-          <tr><td><strong>must</strong></td><td>Obrigação / regra</td><td>deve / tem que</td></tr>
-          <tr><td><strong>mustn't</strong></td><td>Proibição</td><td>não deve / é proibido</td></tr>
-        </table>
-        <div class="think">💭 Think: What's the difference between "You should study" and "You must study"? Which one is stronger?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">🗣️ Should e Shouldn't — Conselho</div>
+    <div class="abody">
+      <p>Usamos <strong>should</strong> para dar um conselho — dizer o que é uma boa ideia. E <strong>shouldn't</strong> para o contrário:</p>
+      <div class="hl">✅ You <strong>should</strong> take some medicine. (Você deveria tomar remédio.) — apostila item a<br>
+      ❌ You <strong>shouldn't</strong> be on the phone all the time. — apostila item c</div>
+      <h3>Exercício da apostila — Tina machucou o tornozelo</h3>
+      <div class="hl">a. She <strong>should</strong> put some ice on it. (deveria colocar gelo)<br>
+      b. She <strong>shouldn't</strong> play tomorrow. (não deveria jogar amanhã)<br>
+      c. She <strong>should</strong> see a doctor. (deveria ver um médico)<br>
+      d. She <strong>shouldn't</strong> run or walk. (não deveria correr ou caminhar)</div>
+      <div class="think">💭 Think: Your friend has a cold. Write 2 sentences with should and shouldn't to give advice!</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">⚠️ Must e Mustn't — Obrigação e Proibição</div>
+    <div class="abody">
+      <p><strong>Must</strong> = obrigação/regra importante. <strong>Mustn't</strong> = proibição:</p>
+      <div class="hl">✅ We <strong>must</strong> cross the street on the pedestrian crossing. — apostila item b<br>
+      ✅ We <strong>must</strong> sort our trash. — apostila item d<br>
+      ✅ You <strong>must</strong> look before you cross the street. — apostila exercício 4a<br>
+      ❌ You <strong>mustn't</strong> eat a lot of candy. — apostila exercício 4b<br>
+      ✅ You <strong>must</strong> get vaccinated. — apostila exercício 4c<br>
+      ✅ You <strong>must</strong> wash your hands before you eat. — apostila exercício 4d</div>
+      <h3>Tabela resumo</h3>
+      <table class="etbl">
+        <tr><th>Palavra</th><th>Uso</th><th>Força</th><th>Tradução</th></tr>
+        <tr><td><strong>should</strong></td><td>Conselho / boa ideia</td><td>Suave</td><td>deveria</td></tr>
+        <tr><td><strong>shouldn't</strong></td><td>Conselho negativo</td><td>Suave</td><td>não deveria</td></tr>
+        <tr><td><strong>must</strong></td><td>Obrigação / regra</td><td>Forte</td><td>deve / tem que</td></tr>
+        <tr><td><strong>mustn't</strong></td><td>Proibição</td><td>Forte</td><td>não deve / proibido</td></tr>
+      </table>
+      <div class="think">💭 Think: What's stronger — "You should study" or "You must study"? Why?</div>
+    </div></div>
+
   </div>
-
   <div id="quiz-en" style="display:none"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- GEOGRAFIA -->
-<!-- ============================================================ -->
+<!-- ===== GEOGRAFIA ===== -->
 <div class="panel" id="panel-ge">
-  <div class="disc-header">
-    <span class="disc-icon">🗺️</span>
-    <div>
-      <div class="disc-title">GEOGRAFIA</div>
-      <div class="disc-sub">Funções das Cidades • Espontâneas e Planejadas • Prova: 22/06</div>
-    </div>
+  <div class="dhead"><span class="dicon">🗺️</span>
+    <div><div class="dtitle">GEOGRAFIA</div>
+    <div class="dsub">Funções das Cidades • Espontâneas e Planejadas • Prova: 22/06</div></div>
   </div>
-  <div class="mode-btns">
-    <button class="mode-btn study on" onclick="setMode('ge','study',this)">📖 Estudar</button>
-    <button class="mode-btn quiz" onclick="setMode('ge','quiz',this)">⚔️ Testar</button>
+  <div class="mbts">
+    <button class="mbtn study on" onclick="setMode('ge','study',this)">📖 Estudar</button>
+    <button class="mbtn quiz" onclick="setMode('ge','quiz',this)">⚔️ Testar</button>
   </div>
-  <div class="tab-progress">
-    💡 Progresso nesta disciplina:
-    <div class="tab-prog-bar"><div class="tab-prog-fill" id="prog-ge" style="width:0%"></div></div>
-    <span id="prog-ge-txt">0%</span>
-  </div>
-
+  <div class="tprog">💡 Progresso:<div class="tpbar"><div class="tpfill" id="prog-ge" style="width:0%"></div></div><span id="prog-ge-t">0%</span></div>
   <div id="study-ge">
-    <div class="article">
-      <div class="art-head">🏙️ As Funções das Cidades</div>
-      <div class="art-body">
-        <p>Assim como no Minecraft você pode criar cidades com diferentes funções (fazenda, mineração, comércio...), as cidades reais também têm diferentes funções dependendo das suas atividades principais!</p>
-        <div class="highlight">
-          🏭 <strong>Industrial</strong>: concentra muitas indústrias (ex: Manaus)<br>
-          🏪 <strong>Comercial</strong>: atividade econômica principal é o comércio<br>
-          ⚓ <strong>Portuária</strong>: tem portos, à beira do mar ou de rios<br>
-          🎭 <strong>Histórica/Cultural</strong>: preserva construções e memórias antigas<br>
-          🌴 <strong>Turística</strong>: atrai visitantes por belezas naturais ou culturais
-        </div>
-        <p>Uma cidade pode ter <strong>várias funções</strong> ao mesmo tempo! O Rio de Janeiro, por exemplo, é portuária, comercial, industrial e turística!</p>
-        <p>As funções de uma cidade podem <strong>mudar ao longo do tempo</strong>: uma área industrial pode se tornar residencial, e uma residencial pode virar comercial.</p>
-        <div class="think">💭 Pare e pense: Qual é a função principal de Sumaré, onde você mora? E de São Paulo?</div>
-      </div>
-    </div>
 
-    <div class="article">
-      <div class="art-head">🌱 Cidades Espontâneas</div>
-      <div class="art-body">
-        <p>A maioria das cidades brasileiras cresceu de forma <strong>espontânea</strong> — ou seja, <strong>sem planejamento prévio</strong>. Elas foram crescendo aos poucos, conforme as pessoas iam chegando.</p>
-        <div class="highlight">
-          🏘️ <strong>Ouro Preto (MG)</strong> é um exemplo clássico! Cresceu de forma espontânea por causa da mineração no século XVIII. As ruas são estreitas porque foram feitas para o fluxo de pessoas a pé e em cavalos — não para carros!
-        </div>
-        <p>Características das cidades espontâneas:</p>
-        <ul>
-          <li>Ruas tortas e estreitas</li>
-          <li>Cresceram sem projeto oficial</li>
-          <li>Surgiram por causa de uma atividade (mineração, comércio, porto)</li>
-        </ul>
-        <div class="think">💭 Pare e pense: Por que as ruas de cidades antigas como Ouro Preto são tão estreitas?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">🏙️ Funções das Cidades</div>
+    <div class="abody">
+      <p>A função de uma cidade varia de acordo com as principais atividades realizadas nela. Uma cidade pode ter <strong>várias funções ao mesmo tempo</strong>!</p>
+      <div class="hl">🏭 <strong>Industrial</strong>: concentra muitas indústrias (ex: Manaus - AM)<br>
+      🏪 <strong>Comercial</strong>: atividade econômica predominante é o comércio (ex: Rua 25 de Março, SP)<br>
+      ⚓ <strong>Portuária</strong>: à beira do mar ou de rios, com portos para navios (ex: Navegantes - SC)<br>
+      🏰 <strong>Histórica/Cultural</strong>: preserva construções antigas (ex: Recife - PE, fundada em 1561)<br>
+      🌴 <strong>Turística</strong>: atrai visitantes por belezas naturais ou culturais (ex: Florianópolis - SC)<br>
+      🎓 <strong>Universitária</strong>: abriga universidades e atrai estudantes de outras regiões (ex: Barra dos Garças - MT com a UFMT)</div>
+      <div class="attn">🌆 Rio de Janeiro: é ao mesmo tempo <strong>portuária, comercial, industrial e turística</strong> — exemplo de cidade com múltiplas funções!</div>
+      <p>As funções de uma cidade podem <strong>mudar ao longo do tempo</strong>: uma área industrial pode virar residencial, e uma residencial pode virar comercial.</p>
+      <div class="think">💭 Pare e pense: Qual é a principal função da cidade onde você mora? Ela tem mais de uma função?</div>
+    </div></div>
 
-    <div class="article">
-      <div class="art-head">✏️ Cidades Planejadas</div>
-      <div class="art-body">
-        <p>Algumas cidades foram construídas com um <strong>projeto</strong>, planejadas antes de qualquer construção. O exemplo mais famoso do Brasil é <strong>Brasília</strong>!</p>
-        <div class="highlight">
-          ✈️ <strong>Brasília</strong> tem formato de avião visto de cima! É dividida em 4 setores:<br>
-          🏛️ <strong>Escala Monumental</strong>: onde fica a administração pública (governo)<br>
-          🏘️ <strong>Escala Residencial</strong>: moradias, escolas e clubes<br>
-          🏦 <strong>Escala Gregária</strong>: serviços como bancos e hotéis<br>
-          🌳 <strong>Escala Bucólica</strong>: Lago Paranoá e parques
-        </div>
-        <p>Para construir Brasília, foi criada a <strong>Companhia Urbanizadora Nova Capital</strong> e muitos trabalhadores, principalmente nordestinos, mineiros e goianos, foram atraídos para a grande obra.</p>
-        <div class="think">💭 Pare e pense: O que é melhor: uma cidade planejada ou espontânea? Quais são as vantagens e desvantagens de cada uma?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">🌱 Expansão Urbana e Cidades Espontâneas</div>
+    <div class="abody">
+      <h3>Expansão Urbana</h3>
+      <p>Quando uma cidade passa a ter mais fábricas ou escritórios, atrai novos moradores que precisam de casas, transporte e serviços. Para isso, é preciso construir infraestrutura — esse movimento se chama <strong>expansão urbana</strong>.</p>
+      <div class="hl">📸 Exemplo da apostila: Avenida Borges de Medeiros em Manaus (AM) fotografada em <strong>1932 e em 2022</strong> — o mesmo lugar completamente transformado!</div>
+      <h3>Cidades Espontâneas</h3>
+      <p>A maioria das cidades brasileiras cresceu de forma <strong>espontânea</strong> — sem planejamento oficial, crescendo conforme as pessoas iam chegando:</p>
+      <div class="hl">⛏️ <strong>Ouro Preto (MG)</strong>: cresceu espontaneamente por causa da mineração no século XVIII. Suas ruas são estreitas porque foram feitas para o fluxo de pessoas a pé e cavalos — não para carros!</div>
+      <div class="attn">⚠️ Nas cidades espontâneas, construir nova infraestrutura (saneamento básico, ruas largas) é mais difícil porque o espaço já está ocupado.</div>
+      <p><strong>Saneamento básico</strong>: conjunto de serviços que garante o acesso à água potável e à coleta e tratamento de resíduos líquidos e sólidos. É essencial para evitar doenças!</p>
+      <div class="think">💭 Pare e pense: Por que as ruas de Ouro Preto são tão estreitas? O que isso diz sobre como a cidade foi construída?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">✈️ Cidades Planejadas — Brasília</div>
+    <div class="abody">
+      <p>Algumas cidades foram construídas com um <strong>projeto antes mesmo das primeiras construções</strong>. O maior exemplo brasileiro é <strong>Brasília</strong>!</p>
+      <div class="hl">✈️ Brasília tem formato de <strong>avião visto do alto</strong> e é dividida em 4 setores (escalas):<br>
+      🏛️ <strong>Escala Monumental</strong>: administração pública (governo)<br>
+      🏘️ <strong>Escala Residencial</strong>: moradias, escolas e clubes<br>
+      🏦 <strong>Escala Gregária</strong>: serviços como bancos e hotéis<br>
+      🌳 <strong>Escala Bucólica</strong>: Lago Paranoá e parques</div>
+      <p>Para construir Brasília, foi criada a <strong>Companhia Urbanizadora Nova Capital</strong>. Os trabalhadores eram majoritariamente <strong>nordestinos, mineiros e goianos</strong>. As condições de trabalho e de vida eram ruins.</p>
+      <div class="think">💭 Pare e pense: Quais são as vantagens e desvantagens de viver em uma cidade planejada como Brasília?</div>
+    </div></div>
+
   </div>
-
   <div id="quiz-ge" style="display:none"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- CIÊNCIAS -->
-<!-- ============================================================ -->
+<!-- ===== CIÊNCIAS ===== -->
 <div class="panel" id="panel-ci">
-  <div class="disc-header">
-    <span class="disc-icon">🔬</span>
-    <div>
-      <div class="disc-title">CIÊNCIAS</div>
-      <div class="disc-sub">Consumo Consciente da Água • O Problema do Lixo • Prova: 23/06</div>
-    </div>
+  <div class="dhead"><span class="dicon">🔬</span>
+    <div><div class="dtitle">CIÊNCIAS</div>
+    <div class="dsub">Consumo Consciente da Água • O Problema do Lixo • Prova: 23/06</div></div>
   </div>
-  <div class="mode-btns">
-    <button class="mode-btn study on" onclick="setMode('ci','study',this)">📖 Estudar</button>
-    <button class="mode-btn quiz" onclick="setMode('ci','quiz',this)">⚔️ Testar</button>
+  <div class="mbts">
+    <button class="mbtn study on" onclick="setMode('ci','study',this)">📖 Estudar</button>
+    <button class="mbtn quiz" onclick="setMode('ci','quiz',this)">⚔️ Testar</button>
   </div>
-  <div class="tab-progress">
-    💡 Progresso nesta disciplina:
-    <div class="tab-prog-bar"><div class="tab-prog-fill" id="prog-ci" style="width:0%"></div></div>
-    <span id="prog-ci-txt">0%</span>
-  </div>
-
+  <div class="tprog">💡 Progresso:<div class="tpbar"><div class="tpfill" id="prog-ci" style="width:0%"></div></div><span id="prog-ci-t">0%</span></div>
   <div id="study-ci">
-    <div class="article">
-      <div class="art-head">💧 A Água no Planeta</div>
-      <div class="art-body">
-        <p>A Terra vista do espaço parece azul por causa de tanta água! Mas nem toda água serve para beber...</p>
-        <div class="highlight">
-          🌊 <strong>97%</strong> da água do planeta é <strong>salgada</strong> (oceanos) — não serve para consumo<br>
-          💧 Apenas <strong>3%</strong> é água doce!<br>
-          🧊 Mas grande parte dessa água doce está <strong>congelada nos polos</strong><br>
-          🏞️ O restante está nos <strong>rios e lençóis freáticos</strong>
-        </div>
-        <p>A água pode ser dessalinizada (retirar o sal do mar), mas esse processo é <strong>caro</strong> e exige muita tecnologia.</p>
-        <h3>Tratamento da Água</h3>
-        <p>A água passa por várias etapas antes de chegar à sua torneira:</p>
-        <div class="highlight">
-          1️⃣ <strong>Floculação</strong>: formação de flocos que atraem as sujeiras<br>
-          2️⃣ <strong>Decantação</strong>: as sujeiras afundam no fundo<br>
-          3️⃣ <strong>Filtração</strong>: filtros retiram o restante das partículas<br>
-          4️⃣ <strong>Cloração</strong>: cloro mata os microrganismos<br>
-          5️⃣ <strong>Fluoração</strong>: flúor é adicionado para prevenir cáries
-        </div>
-        <div class="think">💭 Pare e pense: Por que devemos economizar água, mesmo o Brasil sendo um país com muitos rios?</div>
-      </div>
-    </div>
 
-    <div class="article">
-      <div class="art-head">♻️ O Problema do Lixo</div>
-      <div class="art-body">
-        <p>Produzimos muito lixo e isso é um problema enorme! Dois fatores pioraram a situação:</p>
-        <div class="highlight">
-          🛒 <strong>Consumimos demais</strong>: compramos mais do que precisamos e descartamos mais<br>
-          🧴 <strong>Materiais não biodegradáveis</strong>: plástico, metal, vidro e cerâmica demoram séculos para se decompor
-        </div>
-        <h3>Para onde vai o lixo?</h3>
-        <div class="highlight">
-          🗑️ <strong>Lixão</strong>: amontoado de lixo a céu aberto. Gera chorume (líquido tóxico) que contamina o solo e a água. Sem condições de segurança.<br>
-          ✅ <strong>Aterro Sanitário</strong>: lixo é enterrado de forma controlada, sem ficar exposto<br>
-          🔥 <strong>Incinerador</strong>: queima o lixo. Reduz o volume, mas polui o ar (pouco usado no Brasil)<br>
-          ♻️ <strong>Reciclagem</strong>: transforma o lixo em novo material
-        </div>
-        <p>⚠️ Alguns lixos precisam de destino especial: remédios vencidos vão à farmácia, pilhas e baterias vão a postos de coleta!</p>
-        <div class="think">💭 Pare e pense: Qual é a diferença entre lixão e aterro sanitário? Por que lixões são perigosos?</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">💧 A Água no Planeta</div>
+    <div class="abody">
+      <div class="hl">🌊 <strong>97%</strong> da água do planeta é <strong>salgada</strong> (oceanos) — não serve para consumo direto<br>
+      💧 Apenas <strong>3%</strong> é água doce — e nem toda está acessível!<br>
+      🧊 Grande parte da água doce está <strong>congelada nos polos</strong><br>
+      🏞️ O restante está nos <strong>rios e lençóis freáticos</strong></div>
+      <p>A água pode ser <strong>dessalinizada</strong> (retirar o sal do mar), mas esse processo é <strong>caro</strong> e depende de pesquisas e investimentos. (Projeto em João Câmara - RN)</p>
+      <h3>Usos da Água</h3>
+      <p>A água é usada para higiene, limpeza, preparo de alimentos, beber, regar plantas, dar aos animais. Também é usada para <strong>produzir energia elétrica</strong>:</p>
+      <div class="hl">⚡ <strong>Usinas Hidrelétricas</strong> (como Itaipu, em Foz do Iguaçu - PR): uma barragem mantém a água em dois níveis de altura. A queda d'água gira turbinas que geram eletricidade.</div>
+      <h3>Água Virtual (apostila)</h3>
+      <div class="attn">💡 "Água virtual" é a água usada para produzir um produto. O Brasil exporta <strong>112 trilhões de litros</strong> de água virtual por ano (café, soja, milho, açúcar) — somos o <strong>4º maior exportador</strong> do mundo, atrás só de EUA, Índia e China!</div>
+      <div class="think">💭 Pare e pense: Por que devemos economizar água, mesmo o Brasil sendo um país com muitos rios?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">🚿 Tratamento e Consumo Consciente da Água</div>
+    <div class="abody">
+      <h3>Como a água chega até nós</h3>
+      <p>Em muitos lugares, a água chega pelas redes de abastecimento. Onde não há rede, vem de poços — que devem ter a água <strong>fervida, resfriada e filtrada</strong> antes do uso.</p>
+      <h3>Etapas do Tratamento (apostila — todas as 5 etapas)</h3>
+      <div class="hl">1️⃣ <strong>Floculação</strong>: formação de flocos que aderem às partículas suspensas na água<br>
+      2️⃣ <strong>Decantação</strong>: separação das partículas aderidas aos flocos, que se depositam no fundo<br>
+      3️⃣ <strong>Filtração</strong>: separação de partículas por meio de filtros<br>
+      4️⃣ <strong>Cloração</strong>: adição de cloro para matar microrganismos<br>
+      5️⃣ <strong>Fluoração</strong>: adição de flúor para prevenção da cárie</div>
+      <p>Depois de usada, a água vai pela <strong>rede de esgoto</strong> para uma <strong>estação de tratamento de esgoto</strong>. Depois é despejada em rios ou no mar.</p>
+      <h3>Por que economizar?</h3>
+      <p>O ciclo da água é perturbado pelo <strong>asfaltamento</strong> e pela <strong>retirada da vegetação</strong>, que reduzem a infiltração no solo e as chuvas. Se poluirmos e usarmos mais rápido do que a chuva repõe, a água poderá faltar!</p>
+      <div class="hl">✅ Dicas de economia (apostila):<br>
+      • Fechar a torneira ao escovar os dentes<br>
+      • Consertar vazamentos<br>
+      • Lavar muitas roupas de uma vez</div>
+      <div class="think">💭 Pare e pense: Quais hábitos de economia de água você já pratica em casa?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">🗑️ O Problema do Lixo</div>
+    <div class="abody">
+      <p>Dois fatores agravaram muito o problema do lixo atualmente:</p>
+      <div class="hl">🛒 <strong>Consumimos muito</strong>: vivemos uma cultura de consumo — quanto mais compramos, mais descartamos<br>
+      🧴 <strong>Materiais não biodegradáveis</strong>: metais, cerâmica, vidro e plástico não se decompõem ou demoram muito</div>
+      <p>Um termo mais preciso que "lixo" é <strong>resíduos sólidos</strong> (para diferenciar do esgoto, que são resíduos líquidos). Grande parte do que jogamos fora poderia ser reciclado!</p>
+      <h3>Destino dos Resíduos Sólidos (apostila — todos os tipos)</h3>
+      <div class="hl">🗑️ <strong>Lixão</strong>: amontoado a céu aberto. Catadores trabalham sem segurança. O <strong>chorume</strong> (líquido tóxico do lixo orgânico) contamina o <strong>lençol freático</strong>. ❌<br>
+      ✅ <strong>Aterro Sanitário</strong>: resíduos são enterrados de forma controlada, sem ficarem expostos<br>
+      🔥 <strong>Incinerador</strong>: queima os resíduos. Reduz o volume, mas <strong>polui o ar</strong>. Incomum no Brasil.<br>
+      ♻️ <strong>Reciclagem / Cooperativas</strong>: transformam o lixo em novo material</div>
+      <h3>Destino especial — não vai no lixo comum!</h3>
+      <div class="attn">💊 <strong>Remédios vencidos</strong>: levar à farmácia<br>
+      🔋 <strong>Pilhas e baterias</strong>: levar a postos específicos de coleta</div>
+      <h3>Além do lixo doméstico</h3>
+      <div class="hl">🏥 <strong>Lixo hospitalar</strong>: seringas, remédios — tratamento especial<br>
+      🏭 <strong>Lixo industrial</strong>: carvão, resíduos químicos — tratamento especial<br>
+      🌾 <strong>Lixo agrícola</strong>: fertilizantes, herbicidas — tratamento especial<br>
+      ☢️ <strong>Lixo radioativo</strong>: resultante de usinas nucleares — tratamento especial</div>
+      <div class="think">💭 Pare e pense: Qual é a diferença entre lixão e aterro sanitário? Por que o chorume é perigoso?</div>
+    </div></div>
+
   </div>
-
   <div id="quiz-ci" style="display:none"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- PRODUÇÃO DE TEXTO -->
-<!-- ============================================================ -->
+<!-- ===== PRODUÇÃO DE TEXTO ===== -->
 <div class="panel" id="panel-tx">
-  <div class="disc-header">
-    <span class="disc-icon">✏️</span>
-    <div>
-      <div class="disc-title">PRODUÇÃO DE TEXTO</div>
-      <div class="disc-sub">Infográfico sobre Bullying • Prova: 24/06</div>
-    </div>
+  <div class="dhead"><span class="dicon">✏️</span>
+    <div><div class="dtitle">PRODUÇÃO DE TEXTO</div>
+    <div class="dsub">Infográfico sobre Bullying • Prova: 24/06</div></div>
   </div>
-  <div class="mode-btns">
-    <button class="mode-btn study on" onclick="setMode('tx','study',this)">📖 Estudar</button>
-    <button class="mode-btn quiz" onclick="setMode('tx','quiz',this)">⚔️ Testar</button>
+  <div class="mbts">
+    <button class="mbtn study on" onclick="setMode('tx','study',this)">📖 Estudar</button>
+    <button class="mbtn quiz" onclick="setMode('tx','quiz',this)">⚔️ Testar</button>
   </div>
-  <div class="tab-progress">
-    💡 Progresso nesta disciplina:
-    <div class="tab-prog-bar"><div class="tab-prog-fill" id="prog-tx" style="width:0%"></div></div>
-    <span id="prog-tx-txt">0%</span>
-  </div>
-
+  <div class="tprog">💡 Progresso:<div class="tpbar"><div class="tpfill" id="prog-tx" style="width:0%"></div></div><span id="prog-tx-t">0%</span></div>
   <div id="study-tx">
-    <div class="article">
-      <div class="art-head">📊 O que é um Infográfico?</div>
-      <div class="art-body">
-        <p>Um <strong>infográfico</strong> combina imagens, ícones, gráficos e textos curtos para explicar informações de forma visual e rápida. É como um "resumo visual" de um assunto!</p>
-        <div class="highlight">
-          📌 Título claro e impactante<br>
-          🎨 Imagens e ícones que representam as informações<br>
-          📝 Textos curtos e objetivos (não longos parágrafos!)<br>
-          📊 Dados, números e estatísticas quando possível<br>
-          🎯 Organização em tópicos ou seções
-        </div>
-        <div class="think">💭 Pare e pense: Por que usar imagens junto com o texto ajuda a entender melhor as informações?</div>
-      </div>
-    </div>
 
-    <div class="article">
-      <div class="art-head">🚫 Bullying — O que é e como combater</div>
-      <div class="art-body">
-        <p><strong>Bullying</strong> é quando uma pessoa ou grupo agride, humilha ou intimida outra repetidamente. Pode acontecer na escola, no parque ou na internet (cyberbullying).</p>
-        <h3>Tipos de Bullying:</h3>
-        <div class="highlight">
-          👊 <strong>Físico</strong>: empurrar, bater, pegar pertences<br>
-          💬 <strong>Verbal</strong>: xingar, apelidos ofensivos, gozações<br>
-          📵 <strong>Social</strong>: excluir da turma, espalhar boatos<br>
-          📱 <strong>Cyberbullying</strong>: ofensas e humilhações pela internet
-        </div>
-        <h3>O que fazer?</h3>
-        <div class="highlight">
-          ✅ Contar para um adulto de confiança (professor, pais)<br>
-          ✅ Não ficar calado — pedir ajuda não é fraqueza<br>
-          ✅ Apoiar quem está sendo vítima<br>
-          ✅ Não participar ou compartilhar conteúdos ofensivos<br>
-          ❌ Não revidar com violência
-        </div>
-        <h3>Para seu Infográfico, pense em incluir:</h3>
-        <div class="highlight">
-          📌 Título (ex: "Bullying: Conheça, Identifique e Combata!")<br>
-          📊 Definição curta do que é bullying<br>
-          🔢 Os tipos de bullying com ícones<br>
-          ⚠️ Efeitos do bullying na vítima<br>
-          ✅ O que fazer / como combater<br>
-          📞 Onde pedir ajuda
-        </div>
-        <div class="think">💭 Pare e pense: Qual seria um bom título para um infográfico sobre bullying? Pense em algo que chame a atenção!</div>
-      </div>
-    </div>
+    <div class="art"><div class="ahead">📊 O que é um Infográfico?</div>
+    <div class="abody">
+      <p>Um <strong>infográfico</strong> combina <strong>imagens, ícones, gráficos e textos curtos</strong> para explicar informações de forma visual e rápida. Não é uma redação com parágrafos longos — é um resumo visual organizado!</p>
+      <div class="hl">📌 Um bom infográfico tem:<br>
+      • <strong>Título</strong> claro e impactante<br>
+      • <strong>Texto curto e objetivo</strong> — sem longos parágrafos<br>
+      • <strong>Imagens e ícones</strong> que representam as informações<br>
+      • <strong>Dados e números</strong> quando possível (dão credibilidade)<br>
+      • <strong>Organização em tópicos ou seções</strong> claras</div>
+      <div class="think">💭 Pare e pense: Por que usar imagens junto com texto ajuda a entender melhor? Quando você preferiria um infográfico a um texto longo?</div>
+    </div></div>
+
+    <div class="art"><div class="ahead">🚫 Bullying — Conceito e Tipos</div>
+    <div class="abody">
+      <p><strong>Bullying</strong> é quando uma pessoa ou grupo <strong>agride, humilha ou intimida repetidamente</strong> outra pessoa. A repetição é o que caracteriza o bullying — não é uma briga isolada.</p>
+      <h3>Tipos de Bullying</h3>
+      <div class="hl">👊 <strong>Físico</strong>: empurrar, bater, pegar pertences de alguém<br>
+      💬 <strong>Verbal</strong>: xingar, apelidos ofensivos, gozações repetidas<br>
+      👥 <strong>Social/Relacional</strong>: excluir da turma, espalhar boatos para prejudicar<br>
+      📱 <strong>Cyberbullying</strong>: ofensas e humilhações pela internet, redes sociais, apps</div>
+      <h3>O que fazer</h3>
+      <div class="hl">✅ Contar para um adulto de confiança (professor, pais, responsável)<br>
+      ✅ Apoiar quem está sendo vítima — não ficar calado<br>
+      ✅ Não participar nem compartilhar conteúdos ofensivos<br>
+      ❌ Não revidar com violência — isso piora a situação</div>
+      <h3>Estrutura sugerida para o seu Infográfico</h3>
+      <div class="hl">1. Título impactante (ex: "Bullying: Reconheça, Reaja e Combata!")<br>
+      2. O que é bullying — definição curta<br>
+      3. Tipos de bullying com ícones<br>
+      4. Efeitos do bullying na vítima<br>
+      5. O que fazer / como ajudar<br>
+      6. Onde pedir ajuda (Disque 100, escola, família)</div>
+      <div class="think">💭 Pare e pense: Pense num título criativo para seu infográfico sobre bullying. Lembre-se: precisa chamar atenção e deixar claro o tema!</div>
+    </div></div>
+
   </div>
-
   <div id="quiz-tx" style="display:none"></div>
 </div>
 
-</div><!-- /main -->
-
+</div>
 <script>
-// =========================================================
-// QUESTÕES POR DISCIPLINA
-// =========================================================
 const QUIZZES = {
 pt:[
-  {q:"O prefixo DES- em palavras como 'desligar' e 'desfazer' indica:",
+  {q:"O prefixo DES- em 'desligar', 'desmontar' e 'desfazer' indica:",
    opts:["Repetição de uma ação","Ação contrária ou oposta","Superioridade"],ans:1,
-   fb:"Correto! DES- indica ação contrária. 'Desligar' é o contrário de 'ligar'. ⚡"},
-  {q:"Qual dessas palavras usa o prefixo RE- com sentido de 'fazer de novo'?",
-   opts:["Relógio","Recomeçar","Remoto"],ans:1,
-   fb:"Isso! RE- em 'recomeçar' significa começar de novo. Mas 'relógio' e 'remoto' não têm esse prefixo! ✅"},
-  {q:"'Passatempo' (passa + tempo) é um exemplo de:",
-   opts:["Aglutinação","Derivação por sufixo","Justaposição"],ans:2,
-   fb:"Exato! Na justaposição as palavras se juntam SEM perder letras: passa + tempo = passatempo 🎯"},
-  {q:"'Pernalta' (perna + alta) é um exemplo de:",
-   opts:["Justaposição","Aglutinação","Derivação por prefixo"],ans:1,
-   fb:"Correto! Na aglutinação há perda de letra. 'perna + alta' = 'pernalta' (perdeu o 'a' de 'alta') 🦵"},
-  {q:"Qual frase está com a concordância verbal correta?",
-   opts:["Os animais morre por causa do plástico.","Os animais morrem por causa do plástico.","Os animais morrendo por causa do plástico."],ans:1,
-   fb:"Perfeito! Sujeito plural 'os animais' → verbo no plural 'morrem'. O verbo sempre concorda com o sujeito! ✅"},
-  {q:"Complete: 'A preservação ___ fundamental para o meio ambiente.'",
-   opts:["somos","é","são"],ans:1,
-   fb:"Correto! 'A preservação' é singular, então o verbo vai no singular: 'é' ✅"},
-  {q:"'Atividade' e 'ativismo' são formadas da palavra 'ativo' com:",
-   opts:["Prefixos diferentes","O mesmo prefixo","Sufixos diferentes"],ans:2,
-   fb:"Isso! '-idade' e '-ismo' são sufixos diferentes adicionados a 'ativo' para formar novas palavras! 🎯"},
-  {q:"Qual das opções abaixo é uma palavra formada por AGLUTINAÇÃO?",
-   opts:["Passatempo","Planalto","Girassol"],ans:1,
-   fb:"'Planalto' vem de 'plano + alto' com perda da vogal 'o' de plano — isso é aglutinação! ✅"},
-  {q:"O sufixo '-ismo' em 'ativismo' indica:",
-   opts:["Uma qualidade","Uma ação ou movimento","Uma pessoa"],ans:1,
-   fb:"Correto! '-ismo' indica um movimento, doutrina ou tendência. Ativismo = prática de ações por uma causa! 💪"},
-  {q:"'Nós mudamos essa realidade.' O verbo 'mudamos' concorda com o sujeito:",
-   opts:["Eu","Nós","Eles"],ans:1,
-   fb:"Perfeito! 'Mudamos' é a forma do verbo para 'nós'. O verbo sempre acompanha o sujeito! ✅"}
+   fb:"Correto! DES- indica ação contrária. Desligar é o oposto de ligar. ⚡"},
+  {q:"Qual prefixo indica a ideia de 'fazer de novo'?",
+   opts:["des-","re-","in-"],ans:1,
+   fb:"Isso! RE- em 'refazer', 'recomeçar' e 'reler' = fazer de novo. ✅"},
+  {q:"'Passatempo' (passa + tempo) é formado por:",
+   opts:["Aglutinação","Justaposição","Derivação sufixal"],ans:1,
+   fb:"Exato! Justaposição = as palavras se juntam SEM perder letras. 🎯"},
+  {q:"'Pernalta' (perna + alta) é formado por:",
+   opts:["Justaposição","Derivação prefixal","Aglutinação"],ans:2,
+   fb:"Correto! Aglutinação = uma palavra perde letras ao se juntar (perdeu o 'a' de 'alta'). 🦵"},
+  {q:"'Planalto' vem de 'plano + alto'. Qual letra foi perdida? Que processo é esse?",
+   opts:["Perdeu o 'o' de plano — justaposição","Perdeu o 'o' de plano — aglutinação","Não perdeu nenhuma letra — justaposição"],ans:1,
+   fb:"Correto! 'Planalto' = plan(o)+alto — perdeu o 'o' de 'plano'. Isso é aglutinação! ✅"},
+  {q:"A palavra 'você' foi formada por aglutinação de:",
+   opts:["vo + cê","vossa + mercê","você é uma palavra primitiva"],ans:1,
+   fb:"Isso! 'Você' vem de 'vossa + mercê' — duas palavras que se fundiram ao longo do tempo! 🎯"},
+  {q:"Qual frase tem concordância verbal CORRETA?",
+   opts:["100 mil animais marinhos morre a cada ano.","100 mil animais marinhos morrem a cada ano.","100 mil animais marinhos morrendo a cada ano."],ans:1,
+   fb:"Perfeito! Sujeito plural → verbo no plural: animais 'morrem'. ✅"},
+  {q:"'A preservação E a reciclagem ___ ser compromisso de todos.' Qual verbo?",
+   opts:["deve","devem","devo"],ans:1,
+   fb:"Correto! Sujeito composto (preservação + reciclagem) → verbo no plural: 'devem'. ✅"},
+  {q:"Qual dado sobre o plástico está CORRETO, segundo o texto da apostila?",
+   opts:["O plástico leva 40 anos para se decompor","91% do plástico utilizado no mundo não é reciclado","500 milhões de garrafas são compradas por minuto"],ans:1,
+   fb:"Exato! 91% do plástico não é reciclado. O plástico leva 400 anos (não 40) e são 1 milhão de garrafas por minuto! 📊"},
+  {q:"Posições do futebol como 'centrocampo' são formadas por:",
+   opts:["Aglutinação, com perda de letras","Justaposição, sem perda de letras","Derivação por prefixo"],ans:1,
+   fb:"Correto! 'Centrocampo' = centro + campo, sem perder letras — justaposição! ⚽"}
 ],
 mt:[
-  {q:"Um ângulo que mede exatamente 90° é chamado de:",
-   opts:["Ângulo agudo","Ângulo reto","Ângulo obtuso"],ans:1,
-   fb:"Correto! Ângulo reto = 90°, como o canto de uma folha de papel. É o giro de 1/4 de volta! 🔲"},
-  {q:"Um ângulo de 45° é classificado como:",
-   opts:["Agudo","Reto","Obtuso"],ans:0,
-   fb:"Isso! Ângulo agudo é qualquer ângulo MENOR que 90°. 45° < 90°, então é agudo! 🔺"},
-  {q:"Um triângulo com os 3 lados de medidas diferentes é chamado de:",
-   opts:["Equilátero","Isósceles","Escaleno"],ans:2,
-   fb:"Correto! Escaleno tem os 3 lados com medidas DIFERENTES. Pense: escala de medidas diferentes! 📏"},
-  {q:"Um triângulo equilátero tem:",
-   opts:["2 lados iguais","3 lados iguais","3 lados diferentes"],ans:1,
-   fb:"Exato! Equilátero = 3 lados com a MESMA medida. Lembre: 'equi' = igual, 'látero' = lado! ✅"},
-  {q:"Um triângulo RETÂNGULO tem:",
-   opts:["3 ângulos agudos","1 ângulo reto e 2 agudos","1 ângulo obtuso e 2 agudos"],ans:1,
-   fb:"Perfeito! Triângulo retângulo tem UM ângulo de 90° (reto) e dois ângulos agudos! 🔲"},
-  {q:"Em uma árvore de possibilidades com 2 moedas, quantos resultados existem?",
-   opts:["2","3","4"],ans:2,
-   fb:"Correto! 2 opções × 2 opções = 4 resultados: (CC), (CCo), (CoC), (CoCo)! 🎲"},
-  {q:"Uma escola encomendou 15 fardos com 12 caixas de suco cada. Total de caixas:",
-   opts:["27","180","120"],ans:1,
-   fb:"Isso! 15 × 12 = 180 caixas. Multiplicação de grupos iguais! ✖️"},
-  {q:"Qual instrumento é usado para medir ângulos?",
-   opts:["Régua","Transferidor","Compasso"],ans:1,
-   fb:"Correto! O transferidor mede ângulos em graus. O centro vai no vértice e a linha de fé em um dos lados! 📐"},
-  {q:"Um triângulo acutângulo tem:",
-   opts:["1 ângulo reto","1 ângulo obtuso","3 ângulos agudos"],ans:2,
-   fb:"Perfeito! Acutângulo = todos os ângulos são AGUDOS (menores que 90°). 'Acuto' vem de 'agudo'! ✅"},
-  {q:"1044 gibis divididos igualmente para 9 escolas. Cada escola recebe:",
-   opts:["116","108","124"],ans:0,
-   fb:"Isso! 1044 ÷ 9 = 116 gibis por escola. Divisão para repartir igualmente! ➗"}
+  {q:"Um giro de 1/4 de volta corresponde a quantos graus?",
+   opts:["45°","90°","180°"],ans:1,
+   fb:"Correto! 1/4 de volta = 90° = ângulo reto. É o canto de uma folha de papel! 🔲"},
+  {q:"João olhava para o mar. Para caminhar em direção às pedras, ele deu um giro de:",
+   opts:["1/2 volta","1/4 de volta","1 volta completa"],ans:1,
+   fb:"Isso! Um giro de 1/4 de volta (90°) muda a direção para o lado. ✅"},
+  {q:"Um ângulo de 130° é classificado como:",
+   opts:["Agudo","Reto","Obtuso"],ans:2,
+   fb:"Correto! Obtuso: mede mais de 90° e menos de 180°. 130° está nessa faixa! 🔻"},
+  {q:"No transferidor, o que deve coincidir com o vértice do ângulo?",
+   opts:["A linha de fé","O centro do transferidor","A borda externa"],ans:1,
+   fb:"Exato! O centro do transferidor vai no vértice, a linha de fé alinha com um dos lados. 📐"},
+  {q:"Triângulo com os 3 lados de mesma medida: Bruno no geoplano o chamou de:",
+   opts:["Isósceles","Escaleno","Equilátero"],ans:2,
+   fb:"Correto! Equilátero = 3 lados iguais. Bruno representou esse no geoplano! ▲"},
+  {q:"'Todo triângulo equilátero é isósceles, mas nem todo isósceles é equilátero.' Isso é:",
+   opts:["Falso — são a mesma coisa","Verdadeiro — equilátero tem 3 lados iguais, isósceles tem pelo menos 2","Falso — isósceles tem 3 lados diferentes"],ans:1,
+   fb:"Exato! Todo equilátero tem 3 lados iguais, portanto também tem 2 iguais (isósceles). Mas isósceles pode ter só 2 iguais! ✅"},
+  {q:"A turma de Rogério: Urna 1 tem Yanomami, Guarani, Tupinambá. Urna 2 tem Gabriel, Luana, Breno. Quantas possibilidades de sorteio?",
+   opts:["6","9","3"],ans:1,
+   fb:"Correto! 3 etnias × 3 representantes = 9 possibilidades! A árvore mostra todos os caminhos. 🎲"},
+  {q:"Rute faz pães de segunda a sexta, 14 pães por dia. Fevereiro de 2023 teve 20 dias úteis. Quantos pães ela fez?",
+   opts:["280 pães","196 pães","240 pães"],ans:0,
+   fb:"Correto! 20 dias úteis × 14 pães = 280 pães em fevereiro. ✖️"},
+  {q:"Uma indústria fabricou 861.942 peças em 6 meses, igualmente. Quantas por mês?",
+   opts:["143.657 peças","143.567 peças","144.657 peças"],ans:0,
+   fb:"Exato! 861.942 ÷ 6 = 143.657 peças por mês. ➗"},
+  {q:"151.424 turistas visitarão 7 praias igualmente. Quantos por praia?",
+   opts:["21.832","21.632","21.432"],ans:1,
+   fb:"Correto! 151.424 ÷ 7 = 21.632 turistas por praia. ➗"}
 ],
 hi:[
-  {q:"Roma surgiu às margens de qual rio?",
-   opts:["Rio Nilo","Rio Tibre","Rio Mediterrâneo"],ans:1,
-   fb:"Correto! Roma surgiu às margens do Rio Tibre, na Península Itálica, por volta do século VIII a.C.! 🌊"},
-  {q:"Segundo a lenda, Roma foi fundada por:",
-   opts:["Julio César e Marco Antônio","Rômulo e Remo","Tibério e Caio Graco"],ans:1,
-   fb:"Exato! A lenda conta que Rômulo e Remo, criados por uma loba, fundaram Roma! 🐺"},
-  {q:"O que era o Senado romano?",
-   opts:["O exército de Roma","Um conselho de anciãos que limitava o poder do rei","A assembleia do povo"],ans:1,
-   fb:"Correto! O Senado era um conselho de pessoas mais velhas que limitavam o poder do rei! 👴"},
-  {q:"Por que a Lei das Doze Tábuas foi tão importante?",
-   opts:["Era a primeira lei da guerra","Foi o primeiro código de leis ESCRITO, acessível a todos","Dava poder total aos reis"],ans:1,
-   fb:"Perfeito! Com leis escritas, qualquer pessoa que soubesse ler poderia conhecer seus direitos! 📜"},
-  {q:"O que significa 'Mare Nostrum' em latim?",
-   opts:["Mar dos Romanos","Nosso Mar","Mar do Norte"],ans:1,
-   fb:"Correto! 'Mare' = mar, 'Nostrum' = nosso. Os romanos chamavam o Mediterrâneo de 'nosso mar'! 🌊"},
-  {q:"Os plebeus eram:",
-   opts:["Os nobres e ricos de Roma","O povo comum de Roma","Os governantes romanos"],ans:1,
-   fb:"Isso! Os plebeus eram o povo comum. Os patrícios eram os nobres e ricos! ⚔️"},
+  {q:"Roma surgiu às margens de qual rio, na Península Itálica?",
+   opts:["Rio Nilo","Rio Tibre","Rio Reno"],ans:1,
+   fb:"Correto! Roma surgiu às margens do Rio Tibre, por volta do século VIII a.C.! 🌊"},
+  {q:"Na Roma dos reis, quem LIMITAVA o poder do rei?",
+   opts:["Os patrícios e os plebeus","O Senado e a Assembleia","Os guerreiros e os sacerdotes"],ans:1,
+   fb:"Exato! O Senado (anciãos) e a Assembleia (cidadãos que serviam o Exército) limitavam o rei. ✅"},
+  {q:"Segundo a lenda, Rômulo e Remo foram amamentados por:",
+   opts:["Uma cabra","Uma pastora","Uma loba"],ans:2,
+   fb:"Correto! A lenda diz que foram amamentados por uma loba — representada na Loba Capitolina! 🐺"},
+  {q:"A palavra 'República' vem do latim e significa:",
+   opts:["Força do povo","Coisa pública, de todos","Governo dos nobres"],ans:1,
+   fb:"Exato! Res = 'coisa' + publica = 'pública, de todos'. ✅"},
   {q:"O cargo de Tribuno da Plebe foi criado para:",
-   opts:["Comandar o exército","Defender os interesses dos plebeus","Administrar os impostos"],ans:1,
-   fb:"Exato! O tribuno da plebe representava e defendia os direitos do povo comum! ✊"},
-  {q:"O Direito Romano influenciou:",
-   opts:["Apenas as leis da Itália atual","As leis de diferentes povos ao redor do mundo","Somente as leis da Igreja"],ans:1,
-   fb:"Correto! O Direito Romano serviu de modelo para as leis de muitos países, incluindo o Brasil! ⚖️"},
-  {q:"A República romana era inicialmente dominada por:",
-   opts:["Plebeus","Patrícios","Escravos"],ans:1,
-   fb:"Certo! Embora fosse uma república, eram os patrícios (nobres) que dominavam o poder! 🏛️"},
-  {q:"Como os romanos obtinham escravos?",
-   opts:["Comprando em mercados internacionais","Escravizando prisioneiros de guerras","Por sorteio entre os plebeus"],ans:1,
-   fb:"Correto! Prisioneiros vencidos em guerras contra os romanos podiam ser escravizados! ⚔️"}
+   opts:["Comandar o exército","Cobrar impostos","Defender os interesses dos plebeus"],ans:2,
+   fb:"Correto! O Tribuno da Plebe representava e defendia o povo comum! ✊"},
+  {q:"A Lei das Doze Tábuas foi importante porque:",
+   opts:["Dava poder total ao imperador","Foi o primeiro código de leis ESCRITO, acessível a todos","Proibia a escravidão em Roma"],ans:1,
+   fb:"Exato! Com leis escritas, qualquer pessoa que soubesse ler conhecia seus direitos! 📜"},
+  {q:"Os irmãos Tibério e Caio Graco propuseram:",
+   opts:["Criar o Império Romano","Dividir as terras dos patrícios entre os plebeus","Conquistar o Mediterrâneo"],ans:1,
+   fb:"Correto! Os Irmãos Graco propuseram reforma agrária — dividir terras dos patrícios para os plebeus. ✅"},
+  {q:"O que significa 'Mare Nostrum', como os romanos chamavam o Mediterrâneo?",
+   opts:["Mar dos Romanos","Nosso Mar","Mar do Mediterrâneo"],ans:1,
+   fb:"Exato! 'Mare' = mar, 'Nostrum' = nosso. Os romanos controlavam quase todo o Mediterrâneo! 🌊"},
+  {q:"Em Roma, como as pessoas podiam se tornar escravas?",
+   opts:["Somente por dívidas","Sendo vencidas em guerras contra os romanos","Por sorteio entre os plebeus"],ans:1,
+   fb:"Correto! Prisioneiros de guerras podiam ser escravizados — essa é a alternativa correta da apostila! ⚔️"},
+  {q:"Em que ano Roma passou de República para Império?",
+   opts:["326 a.C.","30 a.C.","100 a.C."],ans:1,
+   fb:"Correto! Em 30 a.C. Roma transformou-se em Império, com o poder concentrado no imperador! 🏛️"}
 ],
 en:[
-  {q:"'You _____ take some medicine.' (boa ideia / conselho)",
+  {q:"'You ___ take some medicine.' (boa ideia — conselho)",
    opts:["mustn't","should","must"],ans:1,
-   fb:"Correto! SHOULD é usado para dar conselhos — é uma boa ideia tomar remédio! 💊"},
-  {q:"'You _____ be on the phone all the time.' (não é boa ideia)",
+   fb:"Correto! SHOULD para conselho: é uma boa ideia tomar remédio. 💊"},
+  {q:"Tina machucou o tornozelo. 'She ___ play tomorrow.' (não deveria)",
    opts:["should","must","shouldn't"],ans:2,
-   fb:"Exato! SHOULDN'T = não deveria. Ficar no celular o tempo todo não é uma boa ideia! 📵"},
-  {q:"'We _____ cross the street on the pedestrian crossing.' (obrigação/regra)",
+   fb:"Exato! SHOULDN'T = não deveria. Tina não deveria jogar amanhã! ✅"},
+  {q:"'We ___ cross the street on the pedestrian crossing.' (obrigação/regra)",
    opts:["mustn't","should","must"],ans:2,
-   fb:"Correto! MUST indica obrigação ou regra. Atravessar na faixa é uma regra de segurança! 🚶"},
-  {q:"'You _____ eat a lot of candy.' (proibição — não é permitido)",
+   fb:"Correto! MUST para regra importante de segurança: deve atravessar na faixa! 🚶"},
+  {q:"'You ___ eat a lot of candy.' (proibição — não é permitido/recomendado)",
    opts:["should","mustn't","must"],ans:1,
-   fb:"Perfeito! MUSTN'T indica proibição — comer muitos doces não é permitido (é ruim para a saúde)! 🍬"},
-  {q:"Qual a diferença entre SHOULD e MUST?",
-   opts:["São iguais, não há diferença","SHOULD é conselho, MUST é obrigação/regra","MUST é conselho, SHOULD é obrigação"],ans:1,
-   fb:"Exato! SHOULD = conselho (boa ideia). MUST = obrigação, regra mais forte! ✅"},
-  {q:"'Tina hurt her ankle. She _____ see a doctor.'",
-   opts:["mustn't","shouldn't","should"],ans:2,
-   fb:"Correto! SHOULD para dar conselho: Tina deveria ver um médico após machucar o tornozelo! 🏥"},
-  {q:"'You _____ look before you cross the street.' Aqui usamos must porque:",
-   opts:["É uma sugestão opcional","É uma obrigação / regra de segurança importante","É uma proibição"],ans:1,
-   fb:"Perfeito! MUST indica que é uma regra importante de segurança — você DEVE olhar antes de atravessar! 🚦"},
-  {q:"'She _____ run or walk.' (médico proibiu — Tina machucou o tornozelo)",
-   opts:["should","must","shouldn't"],ans:2,
-   fb:"Correto! SHOULDN'T = não deveria. O médico recomenda que ela não corra ou caminhe! ✅"},
-  {q:"'You _____ get vaccinated.' (é importante, é uma obrigação de saúde)",
-   opts:["mustn't","must","shouldn't"],ans:1,
-   fb:"Exato! MUST para obrigação importante: você deve se vacinar para se proteger! 💉"},
-  {q:"'We _____ sort our trash.' (é uma obrigação — regra ambiental)",
+   fb:"Exato! MUSTN'T = proibição. Comer muitos doces é prejudicial à saúde! 🍬"},
+  {q:"'You ___ get vaccinated.' — exercício 4c da apostila",
+   opts:["mustn't","shouldn't","must"],ans:2,
+   fb:"Correto! MUST para obrigação de saúde: você deve se vacinar! 💉"},
+  {q:"'You ___ look before you cross the street.' — exercício 4a da apostila",
    opts:["should","mustn't","must"],ans:2,
-   fb:"Perfeito! Separar o lixo é uma obrigação/regra ambiental importante — usamos MUST! ♻️"}
+   fb:"Exato! MUST para regra importante de segurança. 🚦"},
+  {q:"'You ___ wash your hands before you eat.' — exercício 4d da apostila",
+   opts:["must","shouldn't","mustn't"],ans:0,
+   fb:"Correto! MUST — lavar as mãos antes de comer é uma regra de higiene! 🙌"},
+  {q:"Qual é a diferença principal entre SHOULD e MUST?",
+   opts:["São sinônimos, mesma força","SHOULD é conselho (suave), MUST é obrigação/regra (forte)","MUST é mais educado que SHOULD"],ans:1,
+   fb:"Perfeito! SHOULD = conselho (pode ou não seguir). MUST = obrigação/regra forte. ✅"},
+  {q:"'We ___ sort our trash.' — separar o lixo é uma regra ambiental",
+   opts:["should","mustn't","must"],ans:2,
+   fb:"Correto! Separar o lixo é uma obrigação ambiental importante — usamos MUST! ♻️"},
+  {q:"'She ___ see a doctor.' — conselho para Tina que machucou o tornozelo",
+   opts:["mustn't","shouldn't","should"],ans:2,
+   fb:"Exato! SHOULD para conselho: Tina deveria ver um médico. 🏥"}
 ],
 ge:[
-  {q:"Uma cidade que tem como atividade principal portos onde atracam navios é chamada de cidade:",
-   opts:["Industrial","Portuária","Histórica"],ans:1,
-   fb:"Correto! Cidades portuárias ficam à beira do mar ou de rios e têm portos ativos! ⚓"},
-  {q:"O Rio de Janeiro é um exemplo de cidade com:",
-   opts:["Apenas uma função","Múltiplas funções (portuária, comercial, industrial e turística)","Somente função histórica"],ans:1,
-   fb:"Exato! O Rio de Janeiro tem várias funções ao mesmo tempo — é assim com muitas grandes cidades! 🌆"},
-  {q:"Ouro Preto, em Minas Gerais, é um exemplo de cidade:",
-   opts:["Planejada","Espontânea","Industrial"],ans:1,
-   fb:"Correto! Ouro Preto cresceu espontaneamente por causa da mineração no século XVIII, sem planejamento! ⛏️"},
-  {q:"Brasília foi construída em formato de avião. Os setores são:",
-   opts:["Norte, Sul, Leste e Oeste","Monumental, Residencial, Gregária e Bucólica","Comercial, Industrial, Turística e Histórica"],ans:1,
-   fb:"Perfeito! Brasília tem 4 escalas: Monumental (governo), Residencial (moradia), Gregária (serviços) e Bucólica (natureza)! ✈️"},
-  {q:"O que é expansão urbana?",
-   opts:["Quando uma cidade diminui de tamanho","Quando uma cidade cresce para receber mais moradores e serviços","Quando uma cidade muda de nome"],ans:1,
-   fb:"Correto! Expansão urbana acontece quando a cidade cresce para acomodar mais pessoas e atividades! 🏗️"},
-  {q:"As ruas estreitas de Ouro Preto indicam que:",
-   opts:["A cidade foi mal planejada por arquitetos","Foram construídas para o fluxo de pessoas a pé e cavalos da época","Os moradores preferiram ruas estreitas"],ans:1,
-   fb:"Exato! As ruas eram suficientes para o transporte da época (pessoas e cavalos) — a cidade cresceu sem prever o carro! 🐴"},
-  {q:"Qual função tem cidades que preservam construções históricas como casas, igrejas e monumentos antigos?",
-   opts:["Industrial","Histórica/Cultural","Portuária"],ans:1,
-   fb:"Correto! Cidades históricas preservam a memória, cultura e identidade de quem viveu ali! 🏰"},
-  {q:"Para construir Brasília, foram atraídos trabalhadores principalmente de:",
-   opts:["São Paulo e Rio de Janeiro","Nordeste, Minas Gerais e Goiás","Europa e América do Norte"],ans:1,
-   fb:"Perfeito! A maioria dos trabalhadores da construção de Brasília veio do Nordeste, Minas e Goiás! 👷"},
-  {q:"Uma área industrial pode, ao longo do tempo, se transformar em:",
-   opts:["Nada, é permanente","Área residencial ou comercial","Uma cidade histórica"],ans:1,
-   fb:"Correto! As funções das cidades mudam com o tempo — áreas industriais podem virar residenciais! 🏘️"},
-  {q:"O que significa dizer que uma cidade cresceu 'espontaneamente'?",
-   opts:["Foi construída com projeto e planejamento prévio","Cresceu sem planejamento oficial, conforme as pessoas foram chegando","Foi construída rapidamente em menos de um ano"],ans:1,
-   fb:"Exato! Espontânea = sem planejamento. A maioria das cidades brasileiras cresceu assim! 🌱"}
+  {q:"O Rio de Janeiro é exemplo de cidade com múltiplas funções. Quais são elas?",
+   opts:["Industrial, comercial, agrícola e histórica","Portuária, comercial, industrial e turística","Turística, universitária, histórica e portuária"],ans:1,
+   fb:"Correto! O Rio de Janeiro é portuária, comercial, industrial e turística ao mesmo tempo! 🌆"},
+  {q:"Cidades portuárias se caracterizam por:",
+   opts:["Ter muitas indústrias","Ter portos onde atracam navios, à beira do mar ou de rios","Preservar construções históricas"],ans:1,
+   fb:"Exato! Cidades portuárias ficam à beira do mar ou de rios e têm portos ativos. ⚓"},
+  {q:"Ouro Preto (MG) é exemplo de cidade espontânea. Ela cresceu por causa de:",
+   opts:["O turismo no século XX","A atividade mineradora iniciada no século XVIII","Um projeto governamental planejado"],ans:1,
+   fb:"Correto! Ouro Preto cresceu espontaneamente por causa da mineração no século XVIII! ⛏️"},
+  {q:"Por que as ruas de Ouro Preto são estreitas?",
+   opts:["Por falta de recursos para construir ruas largas","Foram feitas para o fluxo de pessoas e cavalos da época, não para carros","Os moradores escolheram esse padrão"],ans:1,
+   fb:"Exato! As ruas eram suficientes para o transporte da época (pessoas a pé e cavalos)! 🐴"},
+  {q:"Brasília é dividida em 4 escalas. Onde fica a administração pública?",
+   opts:["Escala Residencial","Escala Gregária","Escala Monumental"],ans:2,
+   fb:"Correto! A Escala Monumental abriga a administração pública (governo federal)! 🏛️"},
+  {q:"Na Escala Gregária de Brasília ficam:",
+   opts:["Moradias, escolas e clubes","Serviços como bancos e hotéis","O Lago Paranoá e os parques"],ans:1,
+   fb:"Exato! Gregária = serviços. Residencial = moradias. Bucólica = natureza. ✅"},
+  {q:"O que é 'expansão urbana'?",
+   opts:["Quando uma cidade diminui de tamanho","Crescimento da cidade para receber mais moradores e serviços","Quando uma cidade muda de nome oficial"],ans:1,
+   fb:"Correto! Expansão urbana = crescimento da cidade para acomodar mais pessoas e atividades. 🏗️"},
+  {q:"'Saneamento básico' garante:",
+   opts:["Transporte público eficiente","Acesso à água potável e coleta/tratamento de resíduos","Energia elétrica para todos"],ans:1,
+   fb:"Exato! Saneamento básico = água potável + coleta e tratamento de resíduos. Essencial para evitar doenças! ✅"},
+  {q:"Para construir Brasília, os trabalhadores vieram principalmente de:",
+   opts:["São Paulo e Rio de Janeiro","Nordeste, Minas Gerais e Goiás","Europa e outros países"],ans:1,
+   fb:"Correto! A maioria dos trabalhadores da construção de Brasília era de nordestinos, mineiros e goianos. 👷"},
+  {q:"As funções de uma cidade podem mudar ao longo do tempo. Um exemplo é:",
+   opts:["Uma área industrial que nunca muda","Uma área industrial que se torna residencial","Uma área histórica que vira industrial"],ans:1,
+   fb:"Exato! Com o tempo, áreas industriais podem se transformar em residenciais, e vice-versa! 🏘️"}
 ],
 ci:[
-  {q:"Qual porcentagem da água do planeta é salgada e está nos oceanos?",
+  {q:"Qual porcentagem da água do planeta está nos oceanos (salgada)?",
    opts:["3%","50%","97%"],ans:2,
-   fb:"Correto! 97% da água é salgada e não pode ser consumida diretamente! Apenas 3% é água doce! 🌊"},
-  {q:"A maior parte da água doce do planeta está:",
-   opts:["Nos rios e lagos","Congelada nos polos","No solo e lençóis freáticos"],ans:1,
-   fb:"Exato! A maior parte da água doce está congelada nos polos! Por isso é difícil de usar! 🧊"},
-  {q:"Na estação de tratamento de água, a CLORAÇÃO serve para:",
-   opts:["Formar flocos que atraem sujeiras","Matar microrganismos","Adicionar flúor para prevenir cáries"],ans:1,
-   fb:"Correto! O cloro é adicionado para matar os microrganismos perigosos na água! 🦠"},
-  {q:"Na FLOCULAÇÃO, o que acontece com a água?",
-   opts:["Filtros removem partículas","Formam-se flocos que aderem às partículas em suspensão","A água recebe cloro"],ans:1,
-   fb:"Exato! A floculação forma flocos que 'grudam' nas sujeiras para facilitar a remoção! ✅"},
-  {q:"O LIXÃO é perigoso principalmente porque:",
-   opts:["Ocupa muito espaço","O chorume (líquido do lixo) contamina o solo e a água","É muito caro de manter"],ans:1,
-   fb:"Correto! O chorume é um líquido tóxico que escorre do lixo orgânico e contamina o lençol freático! ⚠️"},
-  {q:"Qual é a diferença principal entre lixão e aterro sanitário?",
-   opts:["O tamanho — o aterro é maior","No aterro, o lixo é enterrado de forma controlada; no lixão, fica exposto","O tipo de lixo aceito"],ans:1,
-   fb:"Perfeito! O aterro sanitário enterra o lixo de forma controlada, evitando contaminação! ✅"},
+   fb:"Correto! 97% é salgada e não pode ser consumida diretamente. Apenas 3% é água doce! 🌊"},
+  {q:"A 'dessalinização' da água do mar é:",
+   opts:["Barata e simples, feita em qualquer lugar","Cara e depende de pesquisas e investimentos","Proibida por lei no Brasil"],ans:1,
+   fb:"Exato! A dessalinização existe (há projeto em João Câmara - RN), mas é cara e tecnológica. ✅"},
+  {q:"Na estação de tratamento, a FLOCULAÇÃO é:",
+   opts:["Adição de cloro para matar microrganismos","Formação de flocos que aderem às partículas suspensas na água","Separação por filtros"],ans:1,
+   fb:"Correto! A floculação forma flocos que 'grudam' nas sujeiras para facilitar a remoção! ✅"},
+  {q:"Qual etapa do tratamento adiciona flúor para prevenir cáries?",
+   opts:["Cloração","Filtração","Fluoração"],ans:2,
+   fb:"Exato! Fluoração = adição de flúor para prevenção de cárie. Cloração = matar microrganismos! 🦷"},
+  {q:"O Brasil exporta água 'virtual'. Qual é a quantidade anual e nossa posição no ranking?",
+   opts:["112 trilhões de litros — 4º maior exportador","12 trilhões de litros — 1º maior exportador","112 bilhões de litros — 2º maior exportador"],ans:0,
+   fb:"Correto! 112 trilhões de litros/ano, 4º maior exportador (atrás de EUA, Índia e China)! 💧"},
+  {q:"O chorume nos lixões é perigoso porque:",
+   opts:["É muito pesado e difícil de retirar","É líquido tóxico do lixo orgânico que contamina o lençol freático","Atrai animais selvagens perigosos"],ans:1,
+   fb:"Correto! O chorume é o líquido que escorre do lixo orgânico e contamina a água subterrânea! ⚠️"},
   {q:"Pilhas e baterias usadas devem ser descartadas:",
-   opts:["No lixo comum de casa","Em postos específicos de coleta","No lixão"],ans:1,
-   fb:"Correto! Pilhas e baterias têm substâncias contaminantes e precisam de descarte especial! 🔋"},
-  {q:"A FLUORAÇÃO na estação de tratamento serve para:",
-   opts:["Matar bactérias","Prevenir cáries nos dentes","Retirar o sal da água"],ans:1,
-   fb:"Exato! O flúor é adicionado à água tratada para ajudar na prevenção de cáries! 🦷"},
-  {q:"Por que o Brasil produz muito lixo atualmente?",
-   opts:["Porque tem muitas fábricas de lixo","Porque vivemos uma cultura de consumo excessivo e usamos muitos materiais não biodegradáveis","Porque não existem leis sobre lixo"],ans:1,
-   fb:"Correto! Consumimos muito e usamos muitos materiais que demoram séculos para se decompor! 🛒"},
-  {q:"A DECANTAÇÃO na estação de tratamento é:",
-   opts:["Adição de produtos químicos","A separação das partículas que afundam no fundo","A filtração por membranas"],ans:1,
-   fb:"Exato! Na decantação, as partículas pesadas (aderidas aos flocos) afundam e são separadas! ✅"}
+   opts:["No lixo doméstico comum","Em postos específicos de coleta","No aterro sanitário comum"],ans:1,
+   fb:"Exato! Pilhas e baterias são lixo especial e devem ir a postos de coleta específicos. 🔋"},
+  {q:"Qual destino do lixo queima os resíduos, reduz o volume mas polui o ar?",
+   opts:["Aterro sanitário","Lixão","Incinerador"],ans:2,
+   fb:"Correto! Incineradores reduzem o lixo mas poluem o ar. São raros no Brasil. 🔥"},
+  {q:"Usinas hidrelétricas como Itaipu produzem energia usando:",
+   opts:["Energia solar e eólica","A queda d'água que gira turbinas","Queima de combustíveis fósseis"],ans:1,
+   fb:"Exato! A água cai de uma barragem, gira turbinas e gera eletricidade. Itaipu fica em Foz do Iguaçu - PR! ⚡"},
+  {q:"Além do lixo doméstico, quais outros tipos existem? (apostila)",
+   opts:["Apenas lixo industrial e hospitalar","Hospitalar, industrial, agrícola e radioativo","Somente hospitalar e radioativo"],ans:1,
+   fb:"Correto! A apostila lista: lixo hospitalar, industrial, agrícola e radioativo — todos com tratamento especial! ✅"}
 ],
 tx:[
-  {q:"O que é um infográfico?",
-   opts:["Um texto longo e detalhado sobre um assunto","Combinação de imagens, ícones e textos curtos para explicar informações visualmente","Uma redação com introdução, desenvolvimento e conclusão"],ans:1,
-   fb:"Correto! O infográfico combina visual e texto curto para comunicar de forma rápida e clara! 📊"},
-  {q:"Bullying é definido como:",
-   opts:["Uma briga ocasional entre amigos","Agressões, humilhações ou intimidações repetidas contra uma pessoa","Uma discussão normal em sala de aula"],ans:1,
-   fb:"Exato! O bullying é REPETIDO — não é uma briga isolada. A repetição é o que o caracteriza! ⚠️"},
+  {q:"O que caracteriza um infográfico em relação a uma redação comum?",
+   opts:["Tem mais parágrafos e texto longo","Combina imagens, ícones e textos curtos para comunicar visualmente","É escrito sem nenhuma imagem"],ans:1,
+   fb:"Correto! Infográfico = visual + texto curto. Não é redação com parágrafos longos! 📊"},
+  {q:"O que diferencia o bullying de uma briga comum?",
+   opts:["O bullying envolve mais pessoas","O bullying é repetido — não é uma agressão isolada","O bullying só acontece entre adultos"],ans:1,
+   fb:"Exato! A REPETIÇÃO é o que caracteriza o bullying. Uma briga isolada não é bullying. ⚠️"},
   {q:"O cyberbullying acontece:",
-   opts:["Somente nas escolas","Pela internet e dispositivos digitais","Apenas entre adultos"],ans:1,
-   fb:"Correto! Cyberbullying é o bullying que acontece nas redes sociais, apps e pela internet! 📱"},
-  {q:"Quando vítima de bullying, o mais importante é:",
-   opts:["Revidar com violência","Contar para um adulto de confiança e pedir ajuda","Ficar calado para não piorar a situação"],ans:1,
-   fb:"Exato! Contar para um adulto de confiança é essencial. Pedir ajuda não é fraqueza — é coragem! 💪"},
+   opts:["Apenas nas escolas, durante as aulas","Pela internet, redes sociais e aplicativos","Somente por telefone"],ans:1,
+   fb:"Correto! Cyberbullying = bullying no ambiente digital — redes sociais, apps, mensagens. 📱"},
+  {q:"Quando você é vítima de bullying, o que deve fazer PRIMEIRO?",
+   opts:["Revidar com violência para se defender","Contar para um adulto de confiança (professor, pais)","Ficar calado para não piorar"],ans:1,
+   fb:"Exato! Pedir ajuda a um adulto de confiança é o mais importante. Não é fraqueza — é coragem! 💪"},
   {q:"Qual elemento NÃO é típico de um infográfico?",
-   opts:["Títulos e subtítulos","Longos parágrafos de texto corrido sem imagens","Ícones e imagens ilustrativas"],ans:1,
-   fb:"Correto! Infográficos usam textos CURTOS, não longos parágrafos. A ideia é comunicar rápido! 📌"},
+   opts:["Ícones e imagens ilustrativas","Título claro e impactante","Longos parágrafos de texto corrido sem organização"],ans:2,
+   fb:"Correto! Infográfico usa texto CURTO e organizado. Longos parágrafos são de redações! 📌"},
   {q:"O bullying verbal inclui:",
-   opts:["Empurrar e bater","Xingar, apelidos ofensivos e gozações","Excluir alguém do grupo"],ans:1,
-   fb:"Exato! Bullying verbal = agressões com palavras: xingamentos, apelidos maldosos, provocações! 💬"},
-  {q:"Para um infográfico sobre bullying ser eficaz, deve ter:",
-   opts:["Apenas texto escrito sem imagens","Título claro, informações organizadas e elementos visuais","Somente estatísticas e números"],ans:1,
-   fb:"Correto! Um bom infográfico equilibra texto, visual e organização clara das informações! 🎨"},
-  {q:"O bullying social inclui:",
-   opts:["Agressões físicas","Excluir alguém da turma e espalhar boatos","Mensagens ofensivas pela internet"],ans:1,
-   fb:"Exato! Bullying social = excluir, ignorar, espalhar boatos para prejudicar socialmente! 👥"},
-  {q:"O que NÃO se deve fazer quando testemunha um bullying?",
-   opts:["Apoiar a vítima","Contar para um adulto","Participar ou rir das agressões"],ans:2,
-   fb:"Correto! Participar ou rir das agressões faz de você um cúmplice do bullying! Nunca faça isso! ✋"},
+   opts:["Empurrar e bater","Xingamentos e apelidos ofensivos repetidos","Excluir alguém do grupo de amigos"],ans:1,
+   fb:"Exato! Bullying verbal = agressão com palavras: xingamentos, apelidos, gozações. 💬"},
+  {q:"O bullying social/relacional é quando:",
+   opts:["A pessoa é agredida fisicamente","A pessoa é excluída do grupo e são espalhados boatos sobre ela","A pessoa recebe mensagens ofensivas pela internet"],ans:1,
+   fb:"Correto! Bullying social = excluir, ignorar, espalhar boatos para prejudicar socialmente. 👥"},
   {q:"Dados e estatísticas em um infográfico servem para:",
-   opts:["Tornar o texto mais longo","Dar credibilidade e tornar a informação mais concreta e impactante","Decorar o infográfico"],ans:1,
-   fb:"Exato! Números e dados tornam as informações mais concretas e convincentes! 📊"}
+   opts:["Tornar o texto mais difícil de entender","Dar credibilidade e tornar a informação mais concreta e impactante","Ocupar espaço visual"],ans:1,
+   fb:"Exato! Números tornam as informações mais concretas, críveis e impactantes! 📊"},
+  {q:"O que NÃO se deve fazer quando testemunha um bullying?",
+   opts:["Apoiar a vítima discretamente","Contar para um adulto responsável","Participar ou rir das agressões"],ans:2,
+   fb:"Correto! Participar ou rir faz de você cúmplice do bullying. Nunca faça isso! ✋"},
+  {q:"Para o seu infográfico sobre bullying, qual elemento é essencial incluir?",
+   opts:["Apenas imagens sem texto","Os tipos de bullying, o que fazer e onde pedir ajuda","Somente a definição de bullying"],ans:1,
+   fb:"Exato! Um bom infográfico sobre bullying precisa: tipos, efeitos, o que fazer e onde pedir ajuda! ✅"}
 ]
 };
 
-// =========================================================
-// STATE
-// =========================================================
-const state = {
-  scores:{pt:{right:0,total:0},mt:{right:0,total:0},hi:{right:0,total:0},
-          en:{right:0,total:0},ge:{right:0,total:0},ci:{right:0,total:0},tx:{right:0,total:0}},
-  answered:{pt:{},mt:{},hi:{},en:{},ge:{},ci:{},tx:{}}
-};
+const state={scores:{},answered:{}};
+Object.keys(QUIZZES).forEach(d=>{state.scores[d]={r:0,t:0};state.answered[d]={}});
 
-// =========================================================
-// TABS
-// =========================================================
-function showTab(id, btn){
+function showTab(id,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
@@ -949,130 +818,88 @@ function showTab(id, btn){
   window.scrollTo(0,0);
 }
 
-// =========================================================
-// MODE
-// =========================================================
-function setMode(disc, mode, btn){
-  const btns = btn.parentElement.querySelectorAll('.mode-btn');
-  btns.forEach(b=>b.classList.remove('on'));
+function setMode(disc,mode,btn){
+  btn.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
-  document.getElementById('study-'+disc).style.display = mode==='study'?'block':'none';
-  const quizDiv = document.getElementById('quiz-'+disc);
-  if(mode==='quiz'){
-    quizDiv.style.display='block';
-    renderQuiz(disc);
-  } else {
-    quizDiv.style.display='none';
-  }
+  document.getElementById('study-'+disc).style.display=mode==='study'?'block':'none';
+  const qd=document.getElementById('quiz-'+disc);
+  if(mode==='quiz'){qd.style.display='block';renderQuiz(disc);}
+  else qd.style.display='none';
 }
 
-// =========================================================
-// RENDER QUIZ
-// =========================================================
 function renderQuiz(disc){
-  const div = document.getElementById('quiz-'+disc);
-  const qs = QUIZZES[disc];
-  let html = '';
+  const div=document.getElementById('quiz-'+disc);
+  const qs=QUIZZES[disc];
+  let h='';
   qs.forEach((q,i)=>{
-    const answered = state.answered[disc][i] !== undefined;
-    html += `<div class="q-card" id="qcard-${disc}-${i}">
-      <div class="q-num"><span>⛏️ Questão ${i+1} de ${qs.length}</span>
-      ${answered?`<span style="color:${state.answered[disc][i]===q.ans?'var(--green)':'var(--red)'}">
-      ${state.answered[disc][i]===q.ans?'✅ Correta':'❌ Errada'}</span>`:''}
-      </div>
-      <div class="q-text">${q.q}</div>
-      <div class="q-opts">`;
-    q.opts.forEach((opt,j)=>{
-      let cls='opt';
-      if(answered){
-        cls+=' disabled';
-        if(j===q.ans) cls+=' correct';
-        else if(j===state.answered[disc][i] && j!==q.ans) cls+=' wrong';
-      }
-      html+=`<div class="${cls}" onclick="answer('${disc}',${i},${j})">
-        <div class="opt-letter">${['A','B','C'][j]}</div>${opt}</div>`;
+    const done=state.answered[disc][i]!==undefined;
+    const ok=done&&state.answered[disc][i]===q.ans;
+    h+=`<div class="qcard" id="qc-${disc}-${i}">
+      <div class="qnum"><span>⛏️ Q${i+1}/${qs.length}</span>${done?`<span style="color:${ok?'var(--green)':'var(--red)'}">${ok?'✅':'❌'}</span>`:''}</div>
+      <div class="qtxt">${q.q}</div><div class="qopts">`;
+    q.opts.forEach((o,j)=>{
+      let c='opt';
+      if(done){c+=' disabled';if(j===q.ans)c+=' correct';else if(j===state.answered[disc][i]&&j!==q.ans)c+=' wrong';}
+      h+=`<div class="${c}" onclick="ans('${disc}',${i},${j})"><div class="olttr">${['A','B','C'][j]}</div>${o}</div>`;
     });
-    html+='</div>';
-    html+=`<div class="feedback${answered?' show':''}" id="fb-${disc}-${i}">`;
-    if(answered){
-      const ok = state.answered[disc][i]===q.ans;
-      html+=`<div class="${ok?'fb-ok':'fb-err'}">${ok?'🎉 ':' ❌ '}${q.fb}</div>`;
-    }
-    html+='</div></div>';
+    h+=`</div><div class="fb${done?' show':''}" id="fb-${disc}-${i}">${done?`<div class="${ok?'fbok':'fberr'}">${ok?'🎉 ':'❌ '}${q.fb}</div>`:''}</div></div>`;
   });
-  html+=`<div class="btn-row">
-    <button class="btn btn-gold" onclick="restartQuiz('${disc}')">🔄 Recomeçar este teste</button>
-  </div>`;
-  div.innerHTML=html;
+  h+=`<div class="btnrow"><button class="btn btngo" onclick="restart('${disc}')">🔄 Recomeçar</button></div>`;
+  div.innerHTML=h;
 }
 
-function answer(disc, qIdx, optIdx){
-  if(state.answered[disc][qIdx]!==undefined) return;
-  state.answered[disc][qIdx]=optIdx;
-  const q=QUIZZES[disc][qIdx];
-  const ok=optIdx===q.ans;
-  if(ok) state.scores[disc].right++;
-  state.scores[disc].total = Object.keys(state.answered[disc]).length;
-  updateProgress(disc);
-  updateGlobal();
-  // Update this card immediately
-  const card=document.getElementById(`qcard-${disc}-${qIdx}`);
+function ans(disc,qi,oi){
+  if(state.answered[disc][qi]!==undefined)return;
+  state.answered[disc][qi]=oi;
+  const q=QUIZZES[disc][qi];
+  const ok=oi===q.ans;
+  if(ok)state.scores[disc].r++;
+  state.scores[disc].t=Object.keys(state.answered[disc]).length;
+  updProg(disc);updGlobal();
+  const card=document.getElementById(`qc-${disc}-${qi}`);
   if(card){
     card.querySelectorAll('.opt').forEach((el,j)=>{
       el.classList.add('disabled');
-      if(j===q.ans) el.classList.add('correct');
-      else if(j===optIdx&&!ok) el.classList.add('wrong');
+      if(j===q.ans)el.classList.add('correct');
+      else if(j===oi&&!ok)el.classList.add('wrong');
     });
-    const numEl=card.querySelector('.q-num');
-    const badge=document.createElement('span');
-    badge.style.color=ok?'var(--green)':'var(--red)';
-    badge.textContent=ok?'✅ Correta':'❌ Errada';
-    numEl.appendChild(badge);
-    const fb=document.getElementById(`fb-${disc}-${qIdx}`);
-    fb.innerHTML=`<div class="${ok?'fb-ok':'fb-err'}">${ok?'🎉 ':'❌ '}${q.fb}</div>`;
+    const nm=card.querySelector('.qnum');
+    const sp=document.createElement('span');
+    sp.style.color=ok?'var(--green)':'var(--red)';sp.textContent=ok?'✅':'❌';nm.appendChild(sp);
+    const fb=document.getElementById(`fb-${disc}-${qi}`);
+    fb.innerHTML=`<div class="${ok?'fbok':'fberr'}">${ok?'🎉 ':'❌ '}${q.fb}</div>`;
     fb.classList.add('show');
   }
 }
 
-function restartQuiz(disc){
-  state.answered[disc]={};
-  state.scores[disc]={right:0,total:0};
-  updateProgress(disc);
-  updateGlobal();
-  renderQuiz(disc);
+function restart(disc){
+  state.answered[disc]={};state.scores[disc]={r:0,t:0};
+  updProg(disc);updGlobal();renderQuiz(disc);
 }
 
-// =========================================================
-// PROGRESS
-// =========================================================
-function updateProgress(disc){
-  const total=QUIZZES[disc].length;
+function updProg(disc){
+  const tot=QUIZZES[disc].length;
   const done=Object.keys(state.answered[disc]).length;
-  const pct=Math.round((done/total)*100);
-  const bar=document.getElementById('prog-'+disc);
-  const txt=document.getElementById('prog-'+disc+'-txt');
-  if(bar) bar.style.width=pct+'%';
-  if(txt) txt.textContent=pct+'%';
+  const p=Math.round(done/tot*100);
+  const b=document.getElementById('prog-'+disc);
+  const t=document.getElementById('prog-'+disc+'-t');
+  if(b)b.style.width=p+'%';if(t)t.textContent=p+'%';
 }
 
-function updateGlobal(){
-  let totalRight=0,totalAll=0;
-  Object.values(state.scores).forEach(s=>{totalRight+=s.right;totalAll+=QUIZZES[Object.keys(QUIZZES)[0]].length*7});
+function updGlobal(){
   const allQ=Object.values(QUIZZES).reduce((a,b)=>a+b.length,0);
-  const allDone=Object.values(state.answered).reduce((a,b)=>a+Object.keys(b).length,0);
-  const allRight=Object.values(state.scores).reduce((a,b)=>a+b.right,0);
-  const pct=allQ>0?Math.round((allDone/allQ)*100):0;
-  document.getElementById('globalBar').style.width=pct+'%';
-  document.getElementById('globalScore').textContent=`💎 ${allRight} / ${allDone} acertos`;
+  const allD=Object.values(state.answered).reduce((a,b)=>a+Object.keys(b).length,0);
+  const allR=Object.values(state.scores).reduce((a,b)=>a+b.r,0);
+  const p=allQ>0?Math.round(allD/allQ*100):0;
+  document.getElementById('gBar').style.width=p+'%';
+  document.getElementById('gScore').textContent=`💎 ${allR}/${allD}`;
 }
 
-// Init all quiz divs
-Object.keys(QUIZZES).forEach(disc=>{
-  const d=document.getElementById('quiz-'+disc);
-  if(d) d.style.display='none';
+Object.keys(QUIZZES).forEach(d=>{
+  const el=document.getElementById('quiz-'+d);
+  if(el)el.style.display='none';
 });
 </script>
 <!-- DEPLOY: GitHub Pages | LB AI Solutions | lbaisolutions.com -->
-  
 </body>
 </html>
